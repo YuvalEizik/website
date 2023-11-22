@@ -2,10 +2,15 @@
 <html>
 <head>
     <title>Simple Button Link Test</title>
+    <script>
+        function openLink() {
+            window.open('https://www.example.com', '_blank');
+        }
+    </script>
 </head>
 <body>
 
-    <button onclick="window.location.href='https://www.example.com';">Go to Example</button>
+    <button onclick="openLink();">Go to Example</button>
 
 </body>
 </html>
