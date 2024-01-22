@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surfer SEO End Of Subscription</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #137492;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #baccd6;
+            font-size: 14px;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #137492;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #105c75;
+        }
+        #outputContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #belowRange {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        #copyButton {
+            padding: 10px 20px;
+            background-color: #baccd6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #copyButton:hover {
+            background-color: #a0b1bf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Surfer SEO End Of Subscription</h1>
+        <div>
+            <textarea id="article" placeholder="Paste your article here..."></textarea>
+            <textarea id="keywords" placeholder="Enter keywords and ranges, each on a new line, e.g., 'keyword 0/1-3'"></textarea>
+        </div>
+        <button class="button" onclick="analyzeArticle()">Analyze</button>
+        <div id="outputContainer">
+            <textarea id="belowRange" readonly placeholder="Keywords below minimum range will appear here..."></textarea>
+            <button id="copyButton" onclick="copyOutput()">Copy</button>
+        </div>
+    </div>
+
+     <script>
+        function analyzeArticle() {
+            var articleText = document.getElementById('article').value.toLowerCase();
+            var keywordLines = document.getElementById('keywords').value.toLowerCase().split('\n');
+            var updatedKeywords = [];
+            var belowRangeKeywords = [];
+
+            for (let i = 0; i < keywordLines.length; i += 2) {
+                var keyword = keywordLines[i];
+                var rangePart = keywordLines[i+1];
+                var [current, range] = rangePart.split('/');
+                var [minRange, maxRange] = range.split('–').map(Number);
+
+                // Count the occurrences of the keyword
+                var count = (articleText.match(new RegExp('\\b' + keyword + '\\b', 'gi')) || []).length;
+
+                // Update the keyword count and range
+                updatedKeywords.push(`${keyword}\n${count}/${range}`);
+
+                // Check if the count is below the minimum range
+                if (count < minRange) {
+                    belowRangeKeywords.push(keyword);
+                }
+            }
+
+            // Update the keywords textarea with the new counts
+            document.getElementById('keywords').value = updatedKeywords.join('\n');
+            // Update the belowRange textarea with the keywords below the minimum range
+            document.getElementById('belowRange').value = belowRangeKeywords.join(', ');
+        }
+
+        function copyOutput() {
+            var copyText = document.getElementById("belowRange");
+            copyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+</html>
+
