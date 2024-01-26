@@ -1,192 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyword Tool</title>
     <style>
+        /* Your CSS styles here */
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f7f6;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #137492;
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #baccd6;
-            font-size: 14px;
-            margin-bottom: 5px;
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        }
-        .button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            margin-bottom: 25px;
-
-            background-color: #137492;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .button:hover {
-            background-color: #105c75;
-        }
-        .output-section {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-      .copy-button {
-          margin-left: 10px; /* Add margin to the left of the copy button */
-          white-space: nowrap; /* Ensure the text inside the button does not wrap */
-      }
-
-        .copy-button {
-            padding: 10px 20px;
-            background-color: #baccd6;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .copy-button:hover {
-            background-color: #a0b1bf;
-        }
-        .output-section {
-            display: flex;
-            align-items: center;
-            padding-right: 10px;
-            margin-bottom: 20px; /* Space between output sections */
-        }
-        .output-section label {
-            flex-basis: 20%; /* Adjust the width as needed */
-            margin-right: 10px; /* Space between label and input */
-        }
-        .output-section input,
-        .output-section textarea {
-            flex-grow: 2; /* Allow input/textarea to fill space */
-             margin-right: 10px; /* Space before copy button */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f7f6;
+  color: #333;
 }
-        .copy-button {
-            white-space: nowrap;
-            padding: 10px 20px;
-            background-color: #baccd6;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .copy-button:hover {
-            background-color: #a0b1bf;
-        }
-        /* Add this CSS rule for the outline textarea height */
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #137492;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Modify the CSS for input and textarea to use box-sizing: border-box */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #baccd6;
+  font-size: 14px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
+  height: 50px;
+  /* Set a fixed height for text areas */
+  overflow-y: auto;
+  /* Add vertical scroll when needed */
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  margin-bottom: 25px;
+  background-color: #137492;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #105c75;
+}
+
+.output-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy-button {
+  margin-left: 10px;
+  /* Add margin to the left of the copy button */
+  white-space: nowrap;
+  /* Ensure the text inside the button does not wrap */
+}
+
+.copy-button {
+  padding: 10px 20px;
+  background-color: #baccd6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.copy-button:hover {
+  background-color: #a0b1bf;
+}
+
+.output-section {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  /* Space between output sections */
+}
+
+.output-section label {
+  flex-basis: 20%;
+  /* Adjust the width as needed */
+  margin-right: 10px;
+  /* Space between label and input */
+}
+
+.output-section textarea,
+.output-section input {
+    flex-grow: 1; /* Allow input/textarea to fill the available horizontal space */
+    margin-right: 10px; /* Space before copy button */
+    resize: vertical; /* Only allow vertical resizing */
+}
+
+
+.copy-button {
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: #baccd6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.copy-button:hover {
+  background-color: #a0b1bf;
+}
+
+/* Add this CSS rule for the outline textarea height */
 #outline {
-    height: 300px; /* Adjust the height as needed */
+  height: 300px;
+  /* Adjust the height as needed */
+}
+
+/* Add this CSS rule to make the question text boxes taller */
+.question-input textarea {
+  height: 200px;
+  /* Adjust the height as needed */
+}
+
+
+/* Additional CSS for columns */
+/* Add this CSS to create two columns for the questions */
+.question-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  /* Adjust the gap between columns */
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Adjust the gap between questions */
 }
 
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
     <div class="container">
-        <h1>Keyword Tool</h1>
-        <div>
-            <input type="text" id="keywordInput" placeholder="Enter your keyword...">
-            <button class="button" onclick="generateOutputs()">Generate</button>
-        </div>
-        <div class="output-section">
-            <label for="metaDescription">Meta Description:</label>
-            <textarea id="metaDescription" placeholder="Generated meta description will appear here..." readonly></textarea>
-            <button class="copy-button" onclick="copyToClipboard('metaDescription')">Copy</button>
-        </div>
-        <div class="output-section">
-            <label for="urlSlug">URL:</label>
-            <input type="text" id="urlSlug" readonly placeholder="Generated URL will appear here...">
-            <button class="copy-button" onclick="copyToClipboard('urlSlug')">Copy</button>
-        </div>
-        <div class="output-section">
-    <label for="outline">Outline:</label>
-    <textarea id="outline" placeholder="Generated outline will appear here..." readonly></textarea>
-    <button class="copy-button" onclick="copyToClipboard('outline')">Copy</button>
-</div>
-<div class="question-section">
-        <div class="question-input">
+      <h1>Keyword Tool</h1>
+      <div>
+        <input type="text" id="keywordInput" placeholder="Enter your keyword...">
+        <button class="button" onclick="generateOutputs()">Generate</button>
+      </div>
+      <div class="output-section">
+        <label for="metaDescription">Meta Description:</label>
+        <textarea id="metaDescription" placeholder="Generated meta description will appear here..." readonly></textarea>
+        <button class="copy-button" onclick="copyToClipboard('metaDescription')">Copy</button>
+      </div>
+      <div class="output-section">
+        <label for="urlSlug">URL:</label>
+        <input type="text" id="urlSlug" readonly placeholder="Generated URL will appear here...">
+        <button class="copy-button" onclick="copyToClipboard('urlSlug')">Copy</button>
+      </div>
+      <div class="output-section">
+        <label for="outline">Outline:</label>
+        <textarea id="outline" placeholder="Generated outline will appear here..." readonly></textarea>
+        <button class="copy-button" onclick="copyToClipboard('outline')">Copy</button>
+      </div>
+      <div class="question-section">
+        <div class="column">
+          <div class="question-input">
             <label for="questionWhat">What:</label>
-            <textarea id="questionWhat" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionWhat')">Generate</button>
-        </div>
-        <div class="question-input">
+            <textarea id="questionWhat" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionWhat')">Copy</button>
+          </div>
+          <div class="question-input">
             <label for="questionWhere">Where:</label>
-            <textarea id="questionWhere" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionWhere')">Generate</button>
-        </div>
-        <div class="question-input">
+            <textarea id="questionWhere" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionWhere')">Copy</button>
+          </div>
+          <div class="question-input">
             <label for="questionWhen">When:</label>
-            <textarea id="questionWhen" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionWhen')">Generate</button>
+            <textarea id="questionWhen" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionWhen')">Copy</button>
+          </div>
         </div>
-    </div>
-    <div class="question-section">
-        <div class="question-input">
+        <div class="column">
+          <div class="question-input">
             <label for="questionWhy">Why:</label>
-            <textarea id="questionWhy" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionWhy')">Generate</button>
-        </div>
-        <div class="question-input">
+            <textarea id="questionWhy" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionWhy')">Copy</button>
+          </div>
+          <div class="question-input">
             <label for="questionHow">How:</label>
-            <textarea id="questionHow" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionHow')">Generate</button>
-        </div>
-        <div class="question-input">
+            <textarea id="questionHow" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionHow')">Copy</button>
+          </div>
+          <div class="question-input">
             <label for="questionWhich">Which:</label>
-            <textarea id="questionWhich" placeholder="Enter a question..." rows="4"></textarea>
-            <button class="button" onclick="generateAnswer('questionWhich')">Generate</button>
+            <textarea id="questionWhich" placeholder="Questions will appear here"></textarea>
+            <button class="copy-button" onclick="copyToClipboard('questionWhich')">Copy</button>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    <!-- Add this new output section for the outline below the URL Slug section -->
-
-
     <script>
-        function generateOutputs() {
-            // Generate Meta Description
-            var keyword = document.getElementById('keywordInput').value;
-            var metaDescription = "Meta description for '" + keyword + "'";
-            document.getElementById('metaDescription').value = metaDescription;
+        // Client-side JavaScript
+document.addEventListener("DOMContentLoaded", function() {
+  const generateButton = document.querySelector(".button");
+  generateButton.addEventListener("click", function() {
+    const keywordInput = document.getElementById("keywordInput");
+    const keyword = keywordInput.value; // Get the keyword from the input box
 
-            // Generate URL Slug
-            var urlSlug = keyword.toLowerCase().split(' ').join('-');
-            document.getElementById('urlSlug').value = urlSlug;
-        }
+    fetch('/api/keyword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          keyword
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the JSON response (data) with 8 texts or a list of texts
+        console.log(data);
 
-        function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId);
-            copyText.select();
-            document.execCommand("copy");
-        }
-        
+        // Update the text areas with the received texts (you can customize this part)
+        const textAreas = document.querySelectorAll(".question-input textarea");
+        data.forEach((text, index) => {
+          textAreas[index].value = text;
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
+});
+
     </script>
-    
-</body>
+  </body>
 </html>
