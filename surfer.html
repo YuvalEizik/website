@@ -25,10 +25,15 @@
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .progress {
+            font-size: 16px;
         }
         textarea {
-            box-sizing: border-box; /* Add this line */
-
+            box-sizing: border-box;
             width: 100%;
             height: 75px;
             padding: 10px;
@@ -77,7 +82,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Surfer SEO End Of Subscription</h1>
+        <h1>
+            Surfer SEO End Of Subscription
+            <span class="progress" id="progressIndicator">0%</span>
+        </h1>
         <div>
             <textarea id="article" placeholder="Paste your article here..."></textarea>
             <textarea id="keywords" placeholder="Enter keywords and ranges, each on a new line, e.g., 'keyword 0/1-3'"></textarea>
@@ -95,6 +103,9 @@
             var keywordLines = document.getElementById('keywords').value.toLowerCase().split('\n');
             var updatedKeywords = [];
             var belowRangeKeywords = [];
+            var totalKeywords = keywordLines.length / 2;
+            var completedKeywords = 0;
+            var totalPercentage = 0;
 
             for (let i = 0; i < keywordLines.length; i += 2) {
                 var keyword = keywordLines[i];
@@ -104,13 +115,15 @@
 
                 // Count the occurrences of the keyword
                 var count = (articleText.match(new RegExp('\\b' + keyword + '\\b', 'gi')) || []).length;
-
+								totalPercentage += addPercentage(count,minRange,maxRange);
                 // Update the keyword count and range
                 updatedKeywords.push(`${keyword}\n${count}/${range}`);
 
                 // Check if the count is below the minimum range
                 if (count < minRange) {
                     belowRangeKeywords.push(keyword);
+                } else if (count >= minRange && count <= maxRange) {
+                    completedKeywords++;
                 }
             }
 
@@ -118,7 +131,24 @@
             document.getElementById('keywords').value = updatedKeywords.join('\n');
             // Update the belowRange textarea with the keywords below the minimum range
             document.getElementById('belowRange').value = belowRangeKeywords.join(', ');
+
+            // Calculate the progress percentage
+            var progressPercentage = (totalPercentage / totalKeywords);
+            document.getElementById('progressIndicator').textContent = progressPercentage.toFixed(2) + "%";
         }
+        function addPercentage(count, minRange, maxRange) {
+        if (count < minRange) {
+          // If count is below minRange, calculate the percentage based on how far below the minimum range
+          return (count / minRange) * 100;
+        } else if (count >= minRange && count <= maxRange) {
+          // If count is within the range, return 100%
+          return 100;
+        } else {
+          // If count is above maxRange, return 50%
+          return 50;
+        }
+      }
+        
 
         function copyOutput() {
             var copyText = document.getElementById("belowRange");
@@ -128,4 +158,3 @@
     </script>
 </body>
 </html>
-
