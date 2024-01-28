@@ -25,22 +25,34 @@
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         .progress {
             font-size: 16px;
         }
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .article-container, .keywords-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .article-container {
+            flex: 3; /* Article container taking up 3/4 of the space */
+            margin-right: 20px; /* Adds spacing between the two text areas */
+        }
+        .keywords-container {
+            flex: 1; /* Keywords container taking up the remaining space */
+        }
         textarea {
             box-sizing: border-box;
             width: 100%;
-            height: 75px;
+            height: 200px; /* Adjust height to fit content */
             padding: 10px;
             border-radius: 4px;
             border: 1px solid #baccd6;
             font-size: 14px;
-            margin-bottom: 20px;
             resize: vertical;
         }
         .button {
@@ -86,9 +98,13 @@
             Surfer SEO End Of Subscription
             <span class="progress" id="progressIndicator">0%</span>
         </h1>
-        <div>
-            <textarea id="article" placeholder="Paste your article here..."></textarea>
-            <textarea id="keywords" placeholder="Enter keywords and ranges, each on a new line, e.g., 'keyword 0/1-3'"></textarea>
+        <div class="input-container">
+            <div class="article-container">
+                <textarea id="article" placeholder="Paste your article here..."></textarea>
+            </div>
+            <div class="keywords-container">
+                <textarea id="keywords" placeholder="Enter keywords and ranges, each on a new line, e.g., 'keyword 0/1-3'"></textarea>
+            </div>
         </div>
         <button class="button" onclick="analyzeArticle()">Analyze</button>
         <div id="outputContainer">
@@ -97,7 +113,7 @@
         </div>
     </div>
 
-     <script>
+    <script>
         function analyzeArticle() {
             var articleText = document.getElementById('article').value.toLowerCase();
             var keywordLines = document.getElementById('keywords').value.toLowerCase().split('\n');
@@ -113,13 +129,10 @@
                 var [current, range] = rangePart.split('/');
                 var [minRange, maxRange] = range.split('–').map(Number);
 
-                // Count the occurrences of the keyword
                 var count = (articleText.match(new RegExp('\\b' + keyword + '\\b', 'gi')) || []).length;
-								totalPercentage += addPercentage(count,minRange,maxRange);
-                // Update the keyword count and range
+                totalPercentage += addPercentage(count,minRange,maxRange);
                 updatedKeywords.push(`${keyword}\n${count}/${range}`);
 
-                // Check if the count is below the minimum range
                 if (count < minRange) {
                     belowRangeKeywords.push(keyword);
                 } else if (count >= minRange && count <= maxRange) {
@@ -127,28 +140,22 @@
                 }
             }
 
-            // Update the keywords textarea with the new counts
             document.getElementById('keywords').value = updatedKeywords.join('\n');
-            // Update the belowRange textarea with the keywords below the minimum range
             document.getElementById('belowRange').value = belowRangeKeywords.join(', ');
 
-            // Calculate the progress percentage
             var progressPercentage = (totalPercentage / totalKeywords);
             document.getElementById('progressIndicator').textContent = progressPercentage.toFixed(2) + "%";
         }
+
         function addPercentage(count, minRange, maxRange) {
-        if (count < minRange) {
-          // If count is below minRange, calculate the percentage based on how far below the minimum range
-          return (count / minRange) * 100;
-        } else if (count >= minRange && count <= maxRange) {
-          // If count is within the range, return 100%
-          return 100;
-        } else {
-          // If count is above maxRange, return 50%
-          return 50;
+            if (count < minRange) {
+                return (count / minRange) * 100;
+            } else if (count >= minRange && count <= maxRange) {
+                return 100;
+            } else {
+                return 50;
+            }
         }
-      }
-        
 
         function copyOutput() {
             var copyText = document.getElementById("belowRange");
