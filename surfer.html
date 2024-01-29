@@ -55,6 +55,9 @@
             font-size: 14px;
             resize: vertical;
         }
+        #article, #keywords {
+            height: 300px; /* Increased height for the first two textareas */
+        }
         .button {
             display: block;
             width: 100%;
@@ -122,6 +125,8 @@
             var totalKeywords = keywordLines.length / 2;
             var completedKeywords = 0;
             var totalPercentage = 0;
+            
+						var wordCount = articleText.split(/\s+/).filter(Boolean).length;
 
             for (let i = 0; i < keywordLines.length; i += 2) {
                 var keyword = keywordLines[i];
@@ -144,7 +149,8 @@
             document.getElementById('belowRange').value = belowRangeKeywords.join(', ');
 
             var progressPercentage = (totalPercentage / totalKeywords);
-            document.getElementById('progressIndicator').textContent = progressPercentage.toFixed(2) + "%";
+            document.getElementById('progressIndicator').textContent = progressPercentage.toFixed(2) + "% | Words: " + wordCount;
+
         }
 
         function addPercentage(count, minRange, maxRange) {
