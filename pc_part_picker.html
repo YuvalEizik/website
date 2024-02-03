@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Part Picker</title>
+    <style>
+      /* Your CSS styles here */
+      /* Include the styles from your provided code */
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>PC Part Picker</h1>
+      <table class="full-width-table">
+        <tr>
+          <th>Choose Your Purpose</th>
+          <th id="header1">Game</th>
+          <th id="header2">Resolution</th>
+          <th id="header3">Fps</th>
+        </tr>
+        <tr>
+          <td>
+            <select id="purposeSelect" onchange="updateFormFields(this.value)" onload="updateFormFields('gaming')">
+              <option value="gaming">Gaming</option>
+              <option value="contentCreation">Content Creation</option>
+              <option value="streaming">Streaming</option>
+              <option value="productivityOfficeWork">Productivity and Office Work</option>
+              <option value="programmingDevelopment">Programming and Development</option>
+              <option value="educationLearning">Education and Learning</option>
+              <option value="homeTheaterMediaCenter">Home Theater and Media Center</option>
+              <option value="other">Other</option>
+            </select>
+          </td>
+          <td>
+            <input list="option1List" id="option1Input" placeholder="Select or type option...">
+            <datalist id="option1List">
+            </datalist>
+          </td>
+          <td>
+            <input list="option2List" id="option2Input" placeholder="Select or type option...">
+            <datalist id="option2List">
+            </datalist>
+          </td>
+          <td>
+            <input list="option3List" id="option3Input" placeholder="Select or type option...">
+            <datalist id="option3List">
+            </datalist>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- Parts Section -->
+      <div class="parts-section">
+        <h2>Parts:</h2>
+
+        <table class="parts-table">
+          <tr>
+            <td><img src="https://i.postimg.cc/KjJtvj7M/cpu-icon.png" alt="CPU" style="width: 35px; height: 35px;"></td>
+            <td><label for="cpuInput">CPU:</label></td>
+            <td><input type="text" id="cpuInput" placeholder="Enter CPU details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/W1rcBkwt/gpu-icon.png" alt="GPU" style="width: 40px; height: 40px;"></td>
+            <td><label for="gpuInput">GPU:</label></td>
+            <td><input type="text" id="gpuInput" placeholder="Enter GPU details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/QM8SQFSH/motherboard-icon.png" alt="Motherboard" style="width: 34px; height: 34px;"></td>
+            <td><label for="motherboardInput">Motherboard:</label></td>
+            <td><input type="text" id="motherboardInput" placeholder="Enter Motherboard details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/qMt8d8Ds/memory-icon.png" alt="Memory" style="width: 35px; height: 35px;"></td>
+            <td><label for="memoryInput">Memory:</label></td>
+            <td><input type="text" id="memoryInput" placeholder="Enter Memory details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/V6JYNBrw/storage-icon.png" alt="Storage" style="width: 34px; height: 34px;"></td>
+            <td><label for="storageInput">Storage:</label></td>
+            <td><input type="text" id="storageInput" placeholder="Enter Storage details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/bNsX7HDH/psu-icon.png" alt="PSU" style="width: 35px; height: 35px;"></td>
+            <td><label for="psuInput">PSU:</label></td>
+            <td><input type="text" id="psuInput" placeholder="Enter PSU details"></td>
+          </tr>
+          <tr>
+            <td><img src="https://i.postimg.cc/J0fKWGR5/case-icon.png" alt="Case" style="width: 40px; height: 40px;"></td>
+            <td><label for="caseInput">Case:</label></td>
+            <td><input type="text" id="caseInput" placeholder="Enter Case details"></td>
+          </tr>
+        </table>
+        <button class="button" onclick="generateParts()">Choose</button>
+
+      </div>
+    </div>
+    <script src="pc_part_picker.js">   
+    </script>
+  </body>
+
+</html>
