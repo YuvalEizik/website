@@ -1,35 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Tools</title>
+<style>
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    color: #137492;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .tools-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Adds space between the boxes */
+  }
+
+  .tool-box {
+    width: calc(33.333% - 20px);
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9fbfa;
+    border: 1px solid #baccd6;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tool-box:hover {
+    background-color: #eef1f0;
+  }
+
+  .box-content {
+    margin-bottom: 15px;
+  }
+
+  .tool-image {
+    width: 100px;
+    height: auto;
+  }
+
+  @media (max-width: 600px) {
+    .tools-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tool-box {
+      width: 80%;
+    }
+  }
+</style>
+</head>
+<body>
+
 <div class="container">
   <h1>Writing Tools</h1>
-  <div class="box" onclick="window.location.href='https://yuvaleizik.github.io/website/surfer.html';">Surfer SEO End Of Subscription</div>
-  <div class="box" onclick="window.location.href='https://yuvaleizik.github.io/website/keywords_tool.html';">Keywords Tools</div>
+  <div class="tools-wrapper">
+    <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/surfer.html';">
+      <div class="box-content">Surfer SEO End Of Subscription</div>
+      <img src="path-to-your-image.jpg" alt="Surfer SEO Image" class="tool-image">
+    </div>
+    <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/keywords_tool.html';">
+      <div class="box-content">Keywords Tools</div>
+      <img src="path-to-your-image.jpg" alt="Keywords Tool Image" class="tool-image">
+    </div>
+  </div>
 </div>
-<style>
-.box {
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: #f9fbfa; /* Lighter shade for the box background */
-  border: 1px solid #baccd6; /* Border color similar to form elements */
-  border-radius: 4px; /* Consistent with form element border radius */
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s; /* Smooth background color transition on hover */
-  font-family: 'Open Sans', sans-serif; /* Example: Using 'Open Sans' from Google Fonts */
-  font-size: 18px; /* Larger font size for better readability */
-  font-weight: 500; /* Medium font weight for better emphasis */
-  line-height: 1.6; /* Improved line height for better readability */
-  color: #333; /* Darker font color for better contrast */
-}
 
-.box:hover {
-  background-color: #eef1f0; /* Slightly darker shade on hover */
-}
-
-h1 {
-  font-family: 'Roboto', sans-serif; /* Example: Using 'Roboto' for headings */
-  font-size: 24px; /* Larger size for headings */
-  font-weight: 600; /* Bold weight for headings */
-  color: #137492; /* Color for headings to match your design */
-  margin-bottom: 30px; /* Increased bottom margin for spacing */
-}
-</style>
-
+</body>
+</html>
