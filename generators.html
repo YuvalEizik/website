@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,9 +36,8 @@ h1 {
 }
 
 .tool-box {
-  flex: 1; /* Allows boxes to grow and fill available space */
-  min-width: 100px; /* Minimum width for each box */
-  max-width: calc(25% - 20px); /* Maximum width for each box */
+  flex: 0 1 calc(25% - 10px); /* flex-grow, flex-shrink, and flex-basis */
+  min-width: 100px;
   padding: 20px;
   margin-bottom: 5px;
   background-color: #f9fbfa;
@@ -79,8 +79,11 @@ h1 {
 }
     </style>
   </head>
+
   <body>
+
     <div class="container">
+    
       <div class="tools-wrapper">
         <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/string_art_generator.html';">
           <div class="box-content">String Art Generator</div>
@@ -113,4 +116,5 @@ h1 {
       </div> 
     </div>
   </body>
+
 </html>
