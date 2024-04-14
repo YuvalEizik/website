@@ -1,3 +1,4 @@
+<!-- //this one works -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyword Tool</title>
+    <link rel="stylesheet" href="style.css"> <!-- Replace "style.css" with the actual path to your CSS file -->
     <style>
-        /* Your CSS styles here */
-        body {
+      /* Your CSS styles here */
+body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
@@ -109,9 +111,12 @@ textarea {
 
 .output-section textarea,
 .output-section input {
-    flex-grow: 1; /* Allow input/textarea to fill the available horizontal space */
-    margin-right: 10px; /* Space before copy button */
-    resize: vertical; /* Only allow vertical resizing */
+  flex-grow: 1;
+  /* Allow input/textarea to fill the available horizontal space */
+  margin-right: 10px;
+  /* Space before copy button */
+  resize: vertical;
+  /* Only allow vertical resizing */
 }
 
 
@@ -139,7 +144,8 @@ textarea {
 .question-input textarea {
   height: 200px;
   /* Adjust the height as needed */
-  resize: vertical; /* Only allow vertical resizing */
+  resize: vertical;
+  /* Only allow vertical resizing */
 
 }
 
@@ -161,7 +167,7 @@ textarea {
   /* Adjust the gap between questions */
 }
 
-    </style>
+    </style>    
   </head>
 
   <body>
@@ -169,7 +175,12 @@ textarea {
       <h1>Keyword Tool</h1>
       <div>
         <input type="text" id="keywordInput" placeholder="Enter your keyword...">
-        <button class="button" onclick="generateOutputs()">Generate</button>
+        <button class="button">Generate</button>
+      </div>
+      <div class="output-section">
+        <label for="metaTitle">Meta Title:</label>
+        <input type="text" id="metaTitle" placeholder="Generated meta title will appear here..." readonly>
+        <button class="copy-button" onclick="copyToClipboard('metaTitle')">Copy</button>
       </div>
       <div class="output-section">
         <label for="metaDescription">Meta Description:</label>
@@ -190,48 +201,56 @@ textarea {
         <div class="column">
           <div class="question-input">
             <label for="questionWhat">What:</label>
-            <textarea id="questionWhat" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionWhat" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionWhat')">Copy</button>
           </div>
           <div class="question-input">
             <label for="questionWhere">Where:</label>
-            <textarea id="questionWhere" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionWhere" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionWhere')">Copy</button>
           </div>
           <div class="question-input">
             <label for="questionWhen">When:</label>
-            <textarea id="questionWhen" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionWhen" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionWhen')">Copy</button>
           </div>
         </div>
         <div class="column">
           <div class="question-input">
             <label for="questionWhy">Why:</label>
-            <textarea id="questionWhy" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionWhy" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionWhy')">Copy</button>
           </div>
           <div class="question-input">
             <label for="questionHow">How:</label>
-            <textarea id="questionHow" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionHow" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionHow')">Copy</button>
           </div>
           <div class="question-input">
             <label for="questionWhich">Which:</label>
-            <textarea id="questionWhich" placeholder="Questions will appear here"></textarea>
+            <textarea id="questionWhich" placeholder="Questions will appear here..."></textarea>
             <button class="copy-button" onclick="copyToClipboard('questionWhich')">Copy</button>
           </div>
         </div>
       </div>
     </div>
-    <script>
-        // Client-side JavaScript
-document.addEventListener("DOMContentLoaded", function() {
+  </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
   const generateButton = document.querySelector(".button");
   generateButton.addEventListener("click", function() {
     const keywordInput = document.getElementById("keywordInput");
-    const keyword = keywordInput.value; // Get the keyword from the input box
+    const keyword = keywordInput.value.trim();
+		fetchMetaTitle(keyword); // Fetch Meta Title
 
-    fetch('/api/keyword', {
+    // Generate URL by replacing spaces with hyphens
+    const urlSlug = keyword.replace(/\s+/g, '-');
+    document.getElementById("urlSlug").value = urlSlug;
+
+		
+
+    // Fetch Meta Description
+    fetch('http://localhost:5000/meta-description', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -242,21 +261,189 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(response => response.json())
       .then(data => {
-        // Handle the JSON response (data) with 8 texts or a list of texts
-        console.log(data);
-
-        // Update the text areas with the received texts (you can customize this part)
-        const textAreas = document.querySelectorAll(".question-input textarea");
-        data.forEach((text, index) => {
-          textAreas[index].value = text;
-        });
+        document.getElementById("metaDescription").value = data.meta_description;
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error fetching Meta Description:', error);
       });
+
+    // Fetch Blog Outline
+    fetch('http://localhost:5000/blog-outline', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          keyword
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("outline").value = data.blog_outline;
+      })
+      .catch(error => {
+        console.error('Error fetching Blog Outline:', error);
+      });
+
+    // Fetch responses for each question type
+    // Fetch Answers for each question type
+    fetchWhatResponses(keyword);
+    fetchWhereResponses(keyword);
+    fetchWhenResponses(keyword);
+    fetchWhyResponses(keyword);
+    fetchHowResponses(keyword);
+    fetchWhichResponses(keyword);
+
   });
 });
 
-    </script>
-  </body>
+function fetchMetaTitle(keyword) {
+  fetch('http://localhost:5000/meta-title', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('metaTitle').value = data.meta_title;
+    })
+    .catch(error => {
+      console.error('Error fetching Meta Title:', error);
+    });
+}
+
+function fetchWhatResponses(keyword) {
+  fetch('http://localhost:5000/what-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionWhat').value = data.responses;
+      // document.getElementById('questionWhat').value = "hello";
+
+    })
+    .catch(error => {
+      console.error('Error fetching What responses:', error);
+    });
+}
+
+function fetchWhereResponses(keyword) {
+  fetch('http://localhost:5000/where-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionWhere').value = data.responses;
+    })
+    .catch(error => {
+      console.error('Error fetching Where responses:', error);
+    });
+}
+
+function fetchWhenResponses(keyword) {
+  fetch('http://localhost:5000/when-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionWhen').value = data.responses;
+    })
+    .catch(error => {
+      console.error('Error fetching When responses:', error);
+    });
+}
+
+function fetchWhyResponses(keyword) {
+  fetch('http://localhost:5000/why-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionWhy').value = data.responses;
+    })
+    .catch(error => {
+      console.error('Error fetching Why responses:', error);
+    });
+}
+
+function fetchHowResponses(keyword) {
+  fetch('http://localhost:5000/how-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionHow').value = data.responses;
+    })
+    .catch(error => {
+      console.error('Error fetching How responses:', error);
+    });
+}
+
+function fetchWhichResponses(keyword) {
+  fetch('http://localhost:5000/which-responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        keyword
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('questionWhich').value = data.responses;
+    })
+    .catch(error => {
+      console.error('Error fetching Which responses:', error);
+    });
+}
+
+
+// Function to copy content to clipboard (you can keep this part as is)
+function copyToClipboard(elementId) {
+  var copyText = document.getElementById(elementId);
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+  navigator.clipboard.writeText(copyText.value).then(() => {
+    ///alert("Copied to clipboard");
+  }).catch(err => {
+    console.error('Error in copying text: ', err);
+  });
+}
+
+</script>
 </html>
