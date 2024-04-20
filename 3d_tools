@@ -84,7 +84,10 @@ h1 {
   <body>
 
     <div class="container">
-    
+    <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/string_art_generator.html';">
+          <div class="box-content">String Art Generator</div>
+          <img src="https://yuvaleizik.github.io/website/images/string art generator generators.webp" alt="String Art Generator Image" class="tool-image">
+        </div>
       
     </div>
 
