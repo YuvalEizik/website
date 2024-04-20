@@ -34,9 +34,8 @@ h1 {
 }
 
 .tool-box {
-  flex: 1; /* Allows boxes to grow and fill available space */
-  min-width: 100px; /* Minimum width for each box */
-  max-width: calc(25% - 20px); /* Maximum width for each box */
+  flex: 0 1 calc(25% - 10px); /* flex-grow, flex-shrink, and flex-basis */
+  min-width: 100px;
   padding: 20px;
   margin-bottom: 5px;
   background-color: #f9fbfa;
@@ -76,8 +75,6 @@ h1 {
     max-width: none; /* Removes the max-width on very small screens */
   }
 }
-
-
     </style>
   </head>
 
@@ -106,7 +103,6 @@ h1 {
       
       
     </div>
-
   </body>
 
 </html>
