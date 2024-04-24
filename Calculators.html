@@ -1,1 +1,132 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Tools</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+      .container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: #137492;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.tools-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.tool-box {
+  flex: 0 1 calc(25% - 10px); /* flex-grow, flex-shrink, and flex-basis */
+  min-width: 100px;
+  padding: 20px;
+  margin-bottom: 5px;
+  background-color: #f9fbfa;
+  border: 1px solid #baccd6;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  font-size: 16px;
+}
+
+.tool-box:hover {
+  background-color: #eef1f0;
+}
+
+.box-content {
+  margin-bottom: 15px;
+}
+
+.tool-image {
+  width: 100px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .tools-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tool-box {
+    width: 80%;
+    max-width: none; /* Removes the max-width on very small screens */
+  }
+}
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container">
+    
+      <div class="tools-wrapper">
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/percentage_calculator.html';">
+          <div class="box-content">Percentage Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/percentage calculator calculators.webp" alt="Percentage Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/compound_interest_calculator.html';">
+          <div class="box-content">Compound Interest Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/compound interest calculator calculators" alt="Compound Interest Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/loan_calculator.html';">
+          <div class="box-content">Loan Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/loan calculator calculators.webp" alt="Loan Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/mortgage_calculator.html';">
+          <div class="box-content">Mortgage Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/mortgage calculator calculators.webp" alt="Mortgage Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/inflation_calculator.html';">
+          <div class="box-content">Inflation Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/inflation calculator calculators.webp" alt="Inflation Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/interest_rate_calculator.html';">
+          <div class="box-content">Interest Rate Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/interest rate calculator calculators.webp" alt="Interest Rate Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/final_grade_calculator.html';">
+          <div class="box-content">Final Grade Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/final grade calculator calculators.webp" alt="Final Grade Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/fraction_calculator.html';">
+          <div class="box-content">Fraction Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/fraction calculator calculators.webp" alt="Fraction Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/fraction_calculator.html';">
+          <div class="box-content">Fraction Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/fraction calculator calculators.webp" alt="Fraction Calculator Image" class="tool-image">
+        </div>
+        <div class="tool-box" onclick="window.location.href='https://yuvaleizik.github.io/website/fraction_calculator.html';">
+          <div class="box-content">Fraction Calculator</div>
+          <img src="https://yuvaleizik.github.io/website/images/fraction calculator calculators.webp" alt="Fraction Calculator Image" class="tool-image">
+        </div>
+      </div> 
+    </div>
+  </body>
+
+</html>
