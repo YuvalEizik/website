@@ -1,1 +1,272 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Polygon Selection Tool</title>
+        <script src="glfx.js"></script>
+<script src="https://evanw.github.io/glfx.js/glfx.js"></script>
+    <script>
+      
+
+const imageCanvas = document.getElementById('imageCanvas');
+const resultCanvas = document.getElementById('resultCanvas');
+const ctxImage = imageCanvas.getContext('2d');
+const ctxResult = resultCanvas.getContext('2d');
+let img = new Image();
+let points = [];
+let scaleFactor; // Global scale factor
+
+document.getElementById('imageUpload').addEventListener('change', function(event) {
+    if (event.target.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            img.onload = function() {
+                // Set the canvas dimensions to the image's natural dimensions
+                imageCanvas.width = img.naturalWidth;
+                imageCanvas.height = img.naturalHeight;
+                resultCanvas.width = img.naturalWidth;
+                resultCanvas.height = img.naturalHeight;
+
+                // Draw the image at full resolution
+                const ctxImage = imageCanvas.getContext('2d');
+                ctxImage.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+                
+                // Initialize and draw the polygon after the image is loaded
+                initializePoints();
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        document.getElementById('file-chosen').textContent = event.target.files[0].name;
+    }
+});
+
+
+
+function initializePoints() {
+  const width = imageCanvas.width;
+  const height = imageCanvas.height;
+  points = [
+    { x: width * 0.3, y: height * 0.3 },
+    { x: width * 0.7, y: height * 0.3 },
+    { x: width * 0.7, y: height * 0.7 },
+    { x: width * 0.3, y: height * 0.7 }
+  ];
+  drawPolygon();
+}
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+        y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+    };
+}
+
+
+function drawPolygon() {
+    const ctxImage = imageCanvas.getContext('2d');
+    ctxImage.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+    ctxImage.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+
+    // Drawing polygon lines
+    ctxImage.beginPath();
+    ctxImage.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) {
+        ctxImage.lineTo(points[i].x, points[i].y);
+    }
+    ctxImage.closePath();
+    ctxImage.stroke();
+
+    // Drawing draggable circles
+    points.forEach(point => {
+        ctxImage.beginPath();
+        ctxImage.arc(point.x, point.y, 5, 0, 2 * Math.PI); // Ensure the radius is suitable
+        ctxImage.fill();
+    });
+}
+
+
+
+let draggingPoint = null;
+imageCanvas.addEventListener('mousedown', function(event) {
+    let mousePos = getMousePos(imageCanvas, event);
+    points.forEach((point, index) => {
+        const distance = Math.sqrt((point.x - mousePos.x) ** 2 + (point.y - mousePos.y) ** 2);
+        if (distance <= 10) { // Adjust this value as needed to increase the clickable area
+            draggingPoint = index;
+        }
+    });
+});
+
+
+imageCanvas.addEventListener('mousemove', function(event) {
+    if (draggingPoint !== null) {
+        points[draggingPoint] = { x: event.offsetX, y: event.offsetY };
+        drawPolygon();
+        updateSubImage(); // Update the subimage as the user drags a point
+    }
+});
+
+
+imageCanvas.addEventListener('mouseup', function() {
+  draggingPoint = null;
+});
+
+imageCanvas.addEventListener('mouseleave', function() {
+  draggingPoint = null;
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+  initializePoints();
+  drawPolygon();
+  updateSubImage();
+});
+
+function updateSubImage() {
+    // Initialize the fx canvas and texture
+    var canvas = fx.canvas();
+    var texture = canvas.texture(imageCanvas);  // imageCanvas is your source canvas with the original image
+
+    // Define the source corners based on the points of the polygon
+    var srcCorners = [
+        points[0].x, points[0].y,   // Top-left
+        points[1].x, points[1].y,   // Top-right
+        points[2].x, points[2].y,   // Bottom-right
+        points[3].x, points[3].y    // Bottom-left
+    ];
+    
+    // Destination corners for the transformed image
+    var dstCorners = [
+        0, 0,                                      // Top-left
+        resultCanvas.width, 0,                     // Top-right
+        resultCanvas.width, resultCanvas.height,   // Bottom-right
+        0, resultCanvas.height                     // Bottom-left
+    ];
+
+    // Apply the perspective transformation
+    canvas.draw(texture).perspective(srcCorners, dstCorners).update();
+
+    // Draw the transformed image onto the result canvas
+    var ctxResult = resultCanvas.getContext('2d');
+    ctxResult.clearRect(0, 0, resultCanvas.width, resultCanvas.height); // Clear previous images
+    ctxResult.drawImage(canvas, 0, 0, resultCanvas.width, resultCanvas.height);
+}
+
+
+document.getElementById('downloadButton').addEventListener('click', function() {
+    const dataUrl = resultCanvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = 'cropped-image.png';
+    link.href = dataUrl;
+    link.click();
+});
+
+    </script>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f7f6;
+    color: #333;
+}
+
+.container {
+    /* max-width: 800px; */
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #137492;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.canvas-container canvas {
+    /* width: 100%;  This will be overridden by the actual width calculation in JavaScript
+    height: auto; */
+    border: 1px solid #baccd6; /* Light blue border for the canvas */
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #137492;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #105c75;
+}
+.file-upload-container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.file-upload-label {
+    background-color: #137492;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.file-upload-label:hover {
+    background-color: #105c75;
+}
+
+#file-chosen {
+    font-size: 16px;
+    color: #333;
+}
+canvas {
+    width: 100%; /* Adjust this to fit your layout, keeping the canvas element's actual size large */
+    height: auto;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Image Polygon Selection Tool</h1>
+      <div class="file-upload-container">
+        <input type="file" id="imageUpload" accept="image/*" hidden>
+        <label for="imageUpload" class="file-upload-label">Upload Image</label>
+        <span id="file-chosen">No file chosen</span>
+      </div>
+      <div class="canvas-container" style="display: flex; justify-content: space-between;">
+        <canvas id="imageCanvas"></canvas>
+        <canvas id="resultCanvas"></canvas>
+      </div>
+      <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+        <button class="button" id="resetButton">Reset</button>
+        <button class="button" id="downloadButton">Download Image</button>
+      </div>
+    </div>
+
+  </body>
+
+</html>
