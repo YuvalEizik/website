@@ -215,22 +215,37 @@ document.getElementById('resetButton').addEventListener('click', function() {
 });
 
 function updateSubImage() {
-    // Initialize fx canvas and texture
     var canvas = fx.canvas();
-    var texture = canvas.texture(imageCanvas);
+    var texture = canvas.texture(imageCanvas); // Create texture from the imageCanvas
 
-    // Define source and destination corners based on the points of the polygon
-    var srcCorners = [points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y];
-    var dstCorners = [0, 0, resultCanvas.width, 0, resultCanvas.width, resultCanvas.height, 0, resultCanvas.height];
+    var srcCorners = [
+        points[0].x, points[0].y,
+        points[1].x, points[1].y,
+        points[2].x, points[2].y,
+        points[3].x, points[3].y
+    ];
 
-    // Apply perspective transformation
+    var dstCorners = [
+        0, 0,
+        resultCanvas.width, 0,
+        resultCanvas.width, resultCanvas.height,
+        0, resultCanvas.height
+    ];
+
+    // Apply the perspective transformation
     canvas.draw(texture).perspective(srcCorners, dstCorners).update();
 
-    // Draw the transformed image onto the result canvas
-    ctxResult.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
-    ctxResult.drawImage(canvas, 0, 0, resultCanvas.width, resultCanvas.height);
-}
+    // Define a margin to crop the edges
+    var cropMargin = 3; // Number of pixels to crop from each edge
 
+    // Calculate the new dimensions considering the margin
+    var croppedWidth = resultCanvas.width - 2 * cropMargin;
+    var croppedHeight = resultCanvas.height - 2 * cropMargin;
+
+    // Clear the resultCanvas and draw the cropped image
+    ctxResult.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
+    ctxResult.drawImage(canvas, cropMargin, cropMargin, croppedWidth, croppedHeight, 0, 0, resultCanvas.width, resultCanvas.height);
+}
 
 
 document.getElementById('downloadButton').addEventListener('click', function() {
