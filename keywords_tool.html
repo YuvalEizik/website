@@ -179,25 +179,36 @@ textarea {
       </div>
       <div class="output-section">
         <label for="metaTitle">Meta Title:</label>
+        <input type="checkbox" id="metaTitleToggle" checked> 
+
         <input type="text" id="metaTitle" placeholder="Generated meta title will appear here..." readonly>
         <button class="copy-button" onclick="copyToClipboard('metaTitle')">Copy</button>
       </div>
       <div class="output-section">
         <label for="metaDescription">Meta Description:</label>
+        <input type="checkbox" id="metaDescriptionToggle" checked>
         <textarea id="metaDescription" placeholder="Generated meta description will appear here..." readonly></textarea>
         <button class="copy-button" onclick="copyToClipboard('metaDescription')">Copy</button>
       </div>
       <div class="output-section">
         <label for="urlSlug">URL:</label>
+        <input type="checkbox" id="urlSlugToggle" checked> 
         <input type="text" id="urlSlug" readonly placeholder="Generated URL will appear here...">
         <button class="copy-button" onclick="copyToClipboard('urlSlug')">Copy</button>
       </div>
       <div class="output-section">
         <label for="outline">Outline:</label>
+        <input type="checkbox" id="outlineToggle" checked> 
         <textarea id="outline" placeholder="Generated outline will appear here..." readonly></textarea>
         <button class="copy-button" onclick="copyToClipboard('outline')">Copy</button>
       </div>
-      <div class="question-section">
+      <div style="margin-bottom: 10px;">
+      <label>Questions:</label>
+      <input type="checkbox" id="questionsToggle" checked> 
+      </div>
+      <div class="question-section" >
+              
+
         <div class="column">
           <div class="question-input">
             <label for="questionWhat">What:</label>
@@ -241,16 +252,17 @@ textarea {
   generateButton.addEventListener("click", function() {
     const keywordInput = document.getElementById("keywordInput");
     const keyword = keywordInput.value.trim();
-		fetchMetaTitle(keyword); // Fetch Meta Title
+    if (document.getElementById("metaTitleToggle").checked) {
+        fetchMetaTitle(keyword);
+    }
 
     // Generate URL by replacing spaces with hyphens
     const urlSlug = keyword.replace(/\s+/g, '-');
     document.getElementById("urlSlug").value = urlSlug;
 
 		
-
-    // Fetch Meta Description
-    fetch('http://localhost:5000/meta-description', {
+if (document.getElementById("metaDescriptionToggle").checked) {
+fetch('http://localhost:5000/meta-description', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -265,10 +277,13 @@ textarea {
       })
       .catch(error => {
         console.error('Error fetching Meta Description:', error);
-      });
+      });    }
+    // Fetch Meta Description
+    
 
     // Fetch Blog Outline
-    fetch('http://localhost:5000/blog-outline', {
+    if (document.getElementById("outlineToggle").checked) {
+fetch('http://localhost:5000/blog-outline', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -283,16 +298,20 @@ textarea {
       })
       .catch(error => {
         console.error('Error fetching Blog Outline:', error);
-      });
+      });    }
+
+    
 
     // Fetch responses for each question type
     // Fetch Answers for each question type
-    fetchWhatResponses(keyword);
+    if (document.getElementById("questionsToggle").checked) {
+fetchWhatResponses(keyword);
     fetchWhereResponses(keyword);
     fetchWhenResponses(keyword);
     fetchWhyResponses(keyword);
     fetchHowResponses(keyword);
-    fetchWhichResponses(keyword);
+    fetchWhichResponses(keyword);    }
+    
 
   });
 });
