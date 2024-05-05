@@ -174,7 +174,7 @@ function drawPolygon() {
     // Draw draggable circles on the corners
     points.forEach(point => {
         ctxImage.beginPath();
-        ctxImage.arc(point.x, point.y, 5, 0, 2 * Math.PI); // Circle for draggable points
+        ctxImage.arc(point.x, point.y, 2, 0, 2 * Math.PI); // Circle for draggable points
         ctxImage.fill();
     });
 }
