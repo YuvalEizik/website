@@ -192,19 +192,19 @@ textarea {
       </div>
       <div class="output-section">
         <label for="urlSlug">URL:</label>
-        <input type="checkbox" id="urlSlugToggle" checked> 
+        <input type="checkbox" id="urlSlugToggle"> 
         <input type="text" id="urlSlug" readonly placeholder="Generated URL will appear here...">
         <button class="copy-button" onclick="copyToClipboard('urlSlug')">Copy</button>
       </div>
       <div class="output-section">
         <label for="outline">Outline:</label>
-        <input type="checkbox" id="outlineToggle" checked> 
+        <input type="checkbox" id="outlineToggle"> 
         <textarea id="outline" placeholder="Generated outline will appear here..." readonly></textarea>
         <button class="copy-button" onclick="copyToClipboard('outline')">Copy</button>
       </div>
       <div style="margin-bottom: 10px;">
       <label>Questions:</label>
-      <input type="checkbox" id="questionsToggle" checked> 
+      <input type="checkbox" id="questionsToggle"> 
       </div>
       <div class="question-section" >
               
@@ -255,10 +255,12 @@ textarea {
     if (document.getElementById("metaTitleToggle").checked) {
         fetchMetaTitle(keyword);
     }
-
-    // Generate URL by replacing spaces with hyphens
-    const urlSlug = keyword.replace(/\s+/g, '-');
+if (document.getElementById("urlSlugToggle").checked) {
+const urlSlug = keyword.replace(/\s+/g, '-');
     document.getElementById("urlSlug").value = urlSlug;
+    }
+    // Generate URL by replacing spaces with hyphens
+    
 
 		
 if (document.getElementById("metaDescriptionToggle").checked) {
