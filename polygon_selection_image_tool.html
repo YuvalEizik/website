@@ -83,9 +83,11 @@ h1 {
     color: #333;
 }
 canvas {
-    width: 100%; /* Adjust this to fit your layout, keeping the canvas element's actual size large */
-    height: auto;
+    /* width: 100%; Not needed if JavaScript sets the dimensions */
+    /* height: auto; Not needed if JavaScript sets the dimensions */
+    border: 1px solid #baccd6; /* Optional, for visual styling */
 }
+
 
     </style>
   </head>
@@ -110,6 +112,8 @@ canvas {
 <script>
   
 
+
+
 const imageCanvas = document.getElementById('imageCanvas');
 const resultCanvas = document.getElementById('resultCanvas');
 const ctxImage = imageCanvas.getContext('2d');
@@ -119,31 +123,28 @@ let points = [];
 let scaleFactor; // Global scale factor
 
 document.getElementById('imageUpload').addEventListener('change', function(event) {
-    if (event.target.files.length > 0) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            img.onload = function() {
-                // Set the canvas dimensions to the image's natural dimensions
-                imageCanvas.width = img.naturalWidth;
-                imageCanvas.height = img.naturalHeight;
-                resultCanvas.width = img.naturalWidth;
-                resultCanvas.height = img.naturalHeight;
+  if (event.target.files.length > 0) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      img.onload = function() {
+        // Set the canvas dimensions to the image's natural dimensions
+        imageCanvas.width = img.naturalWidth;
+        imageCanvas.height = img.naturalHeight;
+        resultCanvas.width = img.naturalWidth;
+        resultCanvas.height = img.naturalHeight;
 
-                // Draw the image at full resolution
-                const ctxImage = imageCanvas.getContext('2d');
-                ctxImage.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-                
-                // Initialize and draw the polygon after the image is loaded
-                initializePoints();
-            };
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-        document.getElementById('file-chosen').textContent = event.target.files[0].name;
-    }
+        // Draw the image to fit the canvas size
+        ctxImage.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+        
+        // Initialize and draw the polygon after the image is loaded
+        initializePoints();
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    document.getElementById('file-chosen').textContent = event.target.files[0].name;
+  }
 });
-
-
 
 function initializePoints() {
   const width = imageCanvas.width;
@@ -157,21 +158,11 @@ function initializePoints() {
   drawPolygon();
 }
 
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: (evt.clientX - rect.left) * (canvas.width / rect.width),
-        y: (evt.clientY - rect.top) * (canvas.height / rect.height)
-    };
-}
-
-
 function drawPolygon() {
-    const ctxImage = imageCanvas.getContext('2d');
     ctxImage.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
-    ctxImage.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+    ctxImage.drawImage(img, 0, 0, imageCanvas.width, imageCanvas.height);
 
-    // Drawing polygon lines
+    // Draw polygon lines
     ctxImage.beginPath();
     ctxImage.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i++) {
@@ -180,10 +171,10 @@ function drawPolygon() {
     ctxImage.closePath();
     ctxImage.stroke();
 
-    // Drawing draggable circles
+    // Draw draggable circles on the corners
     points.forEach(point => {
         ctxImage.beginPath();
-        ctxImage.arc(point.x, point.y, 5, 0, 2 * Math.PI); // Ensure the radius is suitable
+        ctxImage.arc(point.x, point.y, 5, 0, 2 * Math.PI); // Circle for draggable points
         ctxImage.fill();
     });
 }
@@ -192,15 +183,13 @@ function drawPolygon() {
 
 let draggingPoint = null;
 imageCanvas.addEventListener('mousedown', function(event) {
-    let mousePos = getMousePos(imageCanvas, event);
-    points.forEach((point, index) => {
-        const distance = Math.sqrt((point.x - mousePos.x) ** 2 + (point.y - mousePos.y) ** 2);
-        if (distance <= 10) { // Adjust this value as needed to increase the clickable area
-            draggingPoint = index;
-        }
-    });
+  const mousePos = { x: event.offsetX, y: event.offsetY };
+  points.forEach((point, index) => {
+    if (Math.pow(point.x - mousePos.x, 2) + Math.pow(point.y - mousePos.y, 2) <= 100) { // radius of 5px, squared
+      draggingPoint = index;
+    }
+  });
 });
-
 
 imageCanvas.addEventListener('mousemove', function(event) {
     if (draggingPoint !== null) {
@@ -226,34 +215,22 @@ document.getElementById('resetButton').addEventListener('click', function() {
 });
 
 function updateSubImage() {
-    // Initialize the fx canvas and texture
+    // Initialize fx canvas and texture
     var canvas = fx.canvas();
-    var texture = canvas.texture(imageCanvas);  // imageCanvas is your source canvas with the original image
+    var texture = canvas.texture(imageCanvas);
 
-    // Define the source corners based on the points of the polygon
-    var srcCorners = [
-        points[0].x, points[0].y,   // Top-left
-        points[1].x, points[1].y,   // Top-right
-        points[2].x, points[2].y,   // Bottom-right
-        points[3].x, points[3].y    // Bottom-left
-    ];
-    
-    // Destination corners for the transformed image
-    var dstCorners = [
-        0, 0,                                      // Top-left
-        resultCanvas.width, 0,                     // Top-right
-        resultCanvas.width, resultCanvas.height,   // Bottom-right
-        0, resultCanvas.height                     // Bottom-left
-    ];
+    // Define source and destination corners based on the points of the polygon
+    var srcCorners = [points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y];
+    var dstCorners = [0, 0, resultCanvas.width, 0, resultCanvas.width, resultCanvas.height, 0, resultCanvas.height];
 
-    // Apply the perspective transformation
+    // Apply perspective transformation
     canvas.draw(texture).perspective(srcCorners, dstCorners).update();
 
     // Draw the transformed image onto the result canvas
-    var ctxResult = resultCanvas.getContext('2d');
-    ctxResult.clearRect(0, 0, resultCanvas.width, resultCanvas.height); // Clear previous images
+    ctxResult.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
     ctxResult.drawImage(canvas, 0, 0, resultCanvas.width, resultCanvas.height);
 }
+
 
 
 document.getElementById('downloadButton').addEventListener('click', function() {
