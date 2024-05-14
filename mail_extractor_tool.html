@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mail Extractor Tool</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f7f6;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #137492;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #baccd6;
+      font-size: 14px;
+      margin-bottom: 5px;
+      box-sizing: border-box;
+      height: 50px;
+      overflow-y: auto;
+            resize: vertical; /* Allow only vertical resizing */
+
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      margin-bottom: 25px;
+      background-color: #137492;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+
+    }
+
+    .button:hover {
+      background-color: #105c75;
+    }
+
+    .output-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .copy-button {
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+
+    .copy-button {
+      padding: 10px 20px;
+      background-color: #baccd6;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .copy-button:hover {
+      background-color: #a0b1bf;
+    }
+
+    #output {
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Mail Extractor Tool</h1>
+    <div>
+      <textarea id="inputText" placeholder="Enter your lines here..."></textarea>
+      <button class="button" onclick="extractTags()">Extract Tags</button>
+    </div>
+    <div class="output-section">
+      <textarea id="output" placeholder="Extracted text will appear here..." readonly></textarea>
+      <button class="copy-button" onclick="copyToClipboard('output')">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    function extractTags() {
+      const inputText = document.getElementById('inputText').value;
+      const lines = inputText.split('\n');
+      const extractedLines = lines.map(line => {
+        const matches = line.match(/<([^>]+)>/g);
+        if (matches) {
+          return matches.map(match => match.replace(/[<>]/g, '')).join(', ');
+        }
+        return '';
+      }).join('\n');
+      document.getElementById('output').value = extractedLines;
+    }
+
+    function copyToClipboard(elementId) {
+      var copyText = document.getElementById(elementId);
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value).then(() => {
+        console.log("Copied to clipboard");
+      }).catch(err => {
+        console.error('Error in copying text: ', err);
+      });
+    }
+  </script>
+</body>
+
+</html>
