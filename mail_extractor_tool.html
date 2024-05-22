@@ -29,6 +29,10 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
+    h3 {
+      color: #137492;
+      margin-bottom: 20px;
+    }
 
     input[type="text"],
     textarea {
@@ -41,8 +45,7 @@
       box-sizing: border-box;
       height: 50px;
       overflow-y: auto;
-            resize: vertical; /* Allow only vertical resizing */
-
+      resize: vertical; /* Allow only vertical resizing */
     }
 
     .button {
@@ -57,7 +60,6 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
-
     }
 
     .button:hover {
@@ -97,9 +99,11 @@
 <body>
   <div class="container">
     <h1>Mail Extractor Tool</h1>
+    <h3>Extract From Gmail</h3>
     <div>
-      <textarea id="inputText" placeholder="Enter your lines here..."></textarea>
-      <button class="button" onclick="extractTags()">Extract Tags</button>
+      <textarea id="inputText" placeholder="Enter your lines here...
+Example <example@gmail.com> will turn to example@gmail.com"></textarea>
+      <button class="button" onclick="extractEmails()">Extract Emails</button>
     </div>
     <div class="output-section">
       <textarea id="output" placeholder="Extracted text will appear here..." readonly></textarea>
@@ -108,17 +112,12 @@
   </div>
 
   <script>
-    function extractTags() {
+    function extractEmails() {
       const inputText = document.getElementById('inputText').value;
-      const lines = inputText.split('\n');
-      const extractedLines = lines.map(line => {
-        const matches = line.match(/<([^>]+)>/g);
-        if (matches) {
-          return matches.map(match => match.replace(/[<>]/g, '')).join(', ');
-        }
-        return '';
-      }).join('\n');
-      document.getElementById('output').value = extractedLines;
+      const emailPattern = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
+      const matches = inputText.match(emailPattern);
+      const extractedEmails = matches ? matches.join('\n') : '';
+      document.getElementById('output').value = extractedEmails;
     }
 
     function copyToClipboard(elementId) {
