@@ -3,86 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Two-Column Layout</title>
+    <title>Responsive Articles Layout</title>
     <style>
-        body {
+        body, html {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            background-color: #f4f7f6;
         }
+
         .container {
-            width: 100%;
-            padding: 0;
-            margin: 0;
+            width: 95%;
+            margin: 20px auto;
+            max-width: 1200px;
         }
-        .big-box {
-            width: 100%;
-            border: 1px solid #ccc;
-            padding: 5px;
-            box-sizing: border-box;
-            text-align: center;
-            margin-bottom: 2px;
+
+        .article {
+            background: #fff; /* White background for contrast */
+            border: 1px solid #ddd; /* Light grey border */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden; /* Ensures the content fits within the borders */
+            padding: 20px;
+            margin-bottom: 20px; /* Space between articles */
         }
-        .box {
-            border: 1px solid #ccc;
-            padding: 5px;
-            text-align: center;
-            box-sizing: border-box;
+
+        .article img {
+            width: 100%; /* Full width of the container */
+            display: block; /* Remove bottom space/gap */
+            height: auto; /* Maintain aspect ratio */
         }
-        .box img {
-            max-width: 100%;
-            height: auto;
+
+        .main {
+            text-align: center; /* Centered text for the main article */
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .submain-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four columns on desktop */
+            gap: 20px;
         }
-        td {
-            padding: 2px;
+
+        .submain {
+            padding: 15px; /* Padding inside each submain article */
+        }
+
+        .regular-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* One column for regular articles */
+            gap: 20px;
+        }
+
+        .regular {
+            display: flex;
+            align-items: center; /* Align items vertically in the center */
+            padding: 10px;
+        }
+
+        .regular img {
+            width: 30%;
+            margin-right: 20px; /* Space between image and text */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .submain-container {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
+            }
+
+            .regular img {
+                width: 100%;
+                margin-bottom: 10px; /* Space between image and text when stacked */
+            }
+
+            .regular {
+                flex-direction: column; /* Stack image and text */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="big-box">
-            <img src="https://via.placeholder.com/300" alt="Big Image">
-            <h2>Big Article Title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+        <h1>Responsive Articles Layout</h1>
+        <div class="article main">
+            <img src="main.jpg" alt="Main Article Image">
+            <h2>Main Article</h2>
+            <p>This is the main article. It has more visual prominence.</p>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <div class="box">
-                        <img src="https://via.placeholder.com/150" alt="Image 1">
-                        <h3>Article Title 1</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="box">
-                        <img src="https://via.placeholder.com/150" alt="Image 2">
-                        <h3>Article Title 2</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="box">
-                        <img src="https://via.placeholder.com/150" alt="Image 3">
-                        <h3>Article Title 3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="box">
-                        <img src="https://via.placeholder.com/150" alt="Image 4">
-                        <h3>Article Title 4</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div class="submain-container">
+            <div class="article submain">
+                <img src="sub1.jpg" alt="Submain Article 1 Image">
+                <h2>Submain Article 1</h2>
+                <p>Short description of the first submain article.</p>
+            </div>
+            <div class="article submain">
+                <img src="sub2.jpg" alt="Submain Article 2 Image">
+                <h2>Submain Article 2</h2>
+                <p>Short description of the second submain article.</p>
+            </div>
+            <div class="article submain">
+                <img src="sub3.jpg" alt="Submain Article 3 Image">
+                <h2>Submain Article 3</h2>
+                <p>Short description of the third submain article.</p>
+            </div>
+            <div class="article submain">
+                <img src="sub4.jpg" alt="Submain Article 4 Image">
+                <h2>Submain Article 4</h2>
+                <p>Short description of the fourth submain article.</p>
+            </div>
+        </div>
+        <div class="regular-container">
+            <div class="article regular">
+                <img src="reg1.jpg" alt="Regular Article 1 Image">
+                <div>
+                    <h2>Regular Article 1</h2>
+                    <p>Description of the regular article. This format is repeated for all regular articles.</p>
+                </div>
+            </div>
+            <!-- Additional regular articles would be added here -->
+        </div>
     </div>
 </body>
 </html>
