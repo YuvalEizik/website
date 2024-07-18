@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <title>Affiliate Boxes</title>
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+        .affiliate-box {
+            width: 200px;
+            border: 1px solid #d9d9d9;
+            background-color: #f7f7fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 2px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            height: 400px;
+            position: relative;
+        }
+        .top-button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            background-color: #6fcf97;
+        }
+        .gold { background-color: #c9b037; } /* Adjusted color to match the example */
+        .silver { background-color: #b4b4b4; }
+        .bronze { background-color: #ad8a56; }
+        .cta-button {
+            background-color: #c2160a;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            text-align: center;
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="affiliate-box-container"></div>
+
+    <script>
+        const productData = {
+            "1": {
+                "best_for": "Best Overall",
+                "header": "WPX Hosting",
+                "description": "Fastest managed WordPress hosting for marketers by a marketer.",
+                "image": "product1.jpg",
+                "rating": "stars.png",
+                "price": "Buy Now!",
+                "link": "https://example.com/wpx-hosting"
+            },
+            "2": {
+                "best_for": "Runner-up",
+                "header": "Kinsta",
+                "description": "Managed WordPress cloud hosting, WooCommerce and Enterprise hosting.",
+                "image": "product2.jpg",
+                "rating": "stars.png",
+                "price": "Buy Now!",
+                "link": "https://example.com/kinsta"
+            },
+            "3": {
+                "best_for": "Best Budget",
+                "header": "Cloudways",
+                "description": "Semi-managed cloud hosting with choice of infrastructures. Suitable for enterprise use.",
+                "image": "product3.jpg",
+                "rating": "stars.png",
+                "price": "Buy Now!",
+                "link": "https://example.com/cloudways"
+            }
+        };
+
+        function createAffiliateBox(product, index) {
+            return `
+                <div class="affiliate-box" style="${index === 0 ? 'border: 1px solid #c9b037;' : ''}">
+                    <span class="top-button ${product.best_for.includes('Overall') ? 'gold' : product.best_for.includes('Runner-up') ? 'silver' : product.best_for.includes('Budget') ? 'bronze' : ''}">${product.best_for}</span>
+                    <img src="${product.image}" alt="${product.header}" style="width: 100%; height: auto;">
+                    <h3>${product.header}</h3>
+                    <p>${product.description}</p>
+                    <img src="${product.rating}" alt="Rating" style="width: 100%; height: auto;">
+                    <a href="${product.link}" target="_blank" class="cta-button">${product.price}</a>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('affiliate-box-container');
+            let index = 0;
+            for (const key in productData) {
+                if (productData.hasOwnProperty(key)) {
+                    const product = productData[key];
+                    container.innerHTML += createAffiliateBox(product, index);
+                    index++;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
