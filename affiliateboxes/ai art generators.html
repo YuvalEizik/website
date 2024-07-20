@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Affiliate Boxes</title>
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+        .affiliate-box {
+            width: 200px;
+            border: 1px solid #d9d9d9;
+            background-color: #f2f7fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 2px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            height: 470px;
+            position: relative;
+        }
+        .top-button {
+            display: block;
+            padding: 10px 0;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .gold { background-color: #c9b037; }
+        .silver { background-color: #b4b4b4; }
+        .bronze { background-color: #ad8a56; }
+        .gray { background-color: #e0e5e8; }
+        .cta-button {
+            background-color: #c2160a;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            text-align: center;
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .stars {
+            color: #FFD700;
+            position: absolute;
+            bottom: 60px; /* Position it just above the button */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .stars i {
+            text-shadow: 0 0 3px #000000;
+        }
+        .rating-number {
+            color: black;
+            font-weight: bold;
+        }
+        .header {
+            position: absolute;
+            top: 120px; /* Adjust this value to position the header */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .description {
+            position: absolute;
+            top: 150px; /* Adjust this value to position the description */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            text-align: center;
+        }
+        .parameters {
+            position: absolute;
+            top: 285px; /* Adjust this value to position the parameters */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            text-align: left;
+        }
+        .parameter-item {
+            display: flex;
+            align-items: center;
+        }
+        .parameter-item i {
+            margin-right: 5px;
+            color: gray;
+        }
+        .img1 {
+            margin-top: 12px;
+        }
+        .img2 {
+            margin-top: 17px;
+        }
+        .img3 {
+            margin-top: 14px;
+        }
+        .img4 {
+            margin-top: 17px;
+        }
+        .img5 {
+            margin-top: 17px;
+        }
+    </style>
+</head>
+<body>
+    <div id="affiliate-box-container"></div>
+
+    <script>
+        const productData = {
+            "1": {
+                "best_for": "Best Overall",
+                "header": "Leonardo AI",
+                "description": "Surfer SEO is a powerful tool designed to help you optimize your content and improve your website's search engine rankings.",
+                "image": "https://yuvaleizik.github.io/website/images/surfer rdy.webp",
+                "rating": 4.8,
+                "price": "Try Now!",
+                "link": "https://get.surferseo.com/a9znhn9289bg",
+                "parameters": ["Keyword Research", "Content Editor", "SERP Analysis", "On Page Advisor"],
+                "imgClass": "img1"
+            },
+            "2": {
+                "best_for": "Runner-up",
+                "header": "Serpstat",
+                "description": "Serpstat is an all-in-one SEO platform that offers keyword research, site audit, backlink analysis, and rank tracking to enhance your online visibility.",
+                "image": "https://yuvaleizik.github.io/website/images/serpstat rdy.webp",
+                "rating": 4.6,
+                "price": "Try Now!",
+                "link": "https://serpstat.com/?ref=1793561",
+                "parameters": ["Keyword Research", "Site Audit", "Backlink Analysis", "Rank Tracking"],
+                "imgClass": "img2"
+            },
+            "3": {
+                "best_for": "Best Budget",
+                "header": "Mangools",
+                "description": "Mangools is a user-friendly SEO toolset offering keyword research, SERP analysis, rank tracking, and site audits to boost your online visibility.",
+                "image": "https://yuvaleizik.github.io/website/images/mangools rdy.webp",
+                "rating": 4.5,
+                "price": "Try Now!",
+                "link": "https://mangools.com/#a64921fde6aee089928d74840",
+                "parameters": ["Keyword Research", "SERP Analysis", "Rank Tracking", "Site Audits"],
+                "imgClass": "img3"
+            },
+            "4": {
+                "best_for": "Best for Small Businesses",
+                "header": "SEMrush",
+                "description": "SEMrush offers a comprehensive suite of SEO tools for small businesses, including keyword research, site audit, and rank tracking.",
+                "image": "https://example.com/images/product4.jpg",
+                "rating": 4.7,
+                "price": "Try Now!",
+                "link": "https://semrush.com/?ref=123456",
+                "parameters": ["Keyword Research", "Site Audit", "Rank Tracking"],
+                "imgClass": "img4"
+            },
+            "5": {
+                "best_for": "Best for Agencies",
+                "header": "Ahrefs",
+                "description": "Ahrefs is a robust SEO toolset designed for agencies, offering detailed backlink analysis, keyword research, and site audits.",
+                "image": "https://example.com/images/product5.jpg",
+                "rating": 4.9,
+                "price": "Try Now!",
+                "link": "https://ahrefs.com/?ref=789101",
+                "parameters": ["Backlink Analysis", "Keyword Research", "Site Audits"],
+                "imgClass": "img5"
+            }
+        };
+
+        const numberOfBoxesToShow = 3; // Change this value to show more or fewer boxes
+
+        function createStarRating(rating) {
+            let fullStars = Math.floor(rating);
+            let halfStars = rating % 1 !== 0 ? 1 : 0;
+            let emptyStars = 5 - fullStars - halfStars;
+            let starsHtml = '';
+
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<i class="fas fa-star"></i>';
+            }
+            for (let i = 0; i < halfStars; i++) {
+                starsHtml += '<i class="fas fa-star-half-alt"></i>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                starsHtml += '<i class="far fa-star"></i>';
+            }
+
+            return starsHtml;
+        }
+
+        function createParameters(parameters) {
+            let parametersHtml = '';
+            parameters.forEach(param => {
+                parametersHtml += `<div class="parameter-item"><i class="fas fa-check"></i> ${param}</div>`;
+            });
+            return parametersHtml;
+        }
+
+        function createAffiliateBox(product, index) {
+            return `
+                <div class="affiliate-box" style="${index === 0 ? 'border: 1px solid #c9b037;' : ''}">
+                    <span class="top-button ${product.best_for.includes('Overall') ? 'gold' : product.best_for.includes('Runner-up') ? 'silver' : product.best_for.includes('Budget') ? 'bronze' : 'gray'}">${product.best_for}</span>
+                    <img src="${product.image}" alt="${product.header}" class="${product.imgClass}" style="width: 100%; height: auto;">
+                    <h3 class="header">${product.header}</h3>
+                    <p class="description">${product.description}</p>
+                    <div class="parameters">${createParameters(product.parameters)}</div>
+                    <div class="stars">${createStarRating(product.rating)} <span class="rating-number">${product.rating.toFixed(1)}</span></div>
+                    <a href="${product.link}" target="_blank" class="cta-button">${product.price}</a>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('affiliate-box-container');
+            let index = 0;
+            for (const key in productData) {
+                if (productData.hasOwnProperty(key) && index < numberOfBoxesToShow) {
+                    const product = productData[key];
+                    container.innerHTML += createAffiliateBox(product, index);
+                    index++;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
