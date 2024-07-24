@@ -1,201 +1,199 @@
 <!DOCTYPE html>
 <html lang="he">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אלבום הברכות של “MyBook”</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>אלבום הברכות של “MyBook”</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-      body {
-        font-family: 'Assistant', sans-serif;
-        margin: 0;
-        padding: 0;
-        direction: rtl;
-      }
+  <style>
+    body {
+      font-family: 'Assistant', sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
 
-      .text {
-        margin-bottom: 20px;
-      }
+    .text {
+      margin-bottom: 20px;
+    }
 
-      .link {
-        text-align: center;
-        margin-top: 1px;
-        /* Reduce the margin-top to decrease spacing */
-        margin-bottom: 25px;
-        /* You can also adjust margin-bottom if needed */
-      }
+    .link {
+      text-align: center;
+      margin-top: 1px;
+      margin-bottom: 25px;
+    }
 
-      .link a {
-        text-decoration: none;
-        color: #7ebdc2;
-        font-weight: bold;
-      }
+    .link a {
+      text-decoration: none;
+      color: #7ebdc2;
+      font-weight: bold;
+    }
 
+    .video-container {
+      text-align: center;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .video-container {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    .highlighted-text {
+      font-size: 1.4em;
+    }
 
-      .highlighted-text {
-        font-size: 1.4em;
-        /* Adjust the font size as needed */
-        /* line-height: 1; */
-        /* Ensure line height is not increased */
-      }
+    .purchase-section {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
 
+    .purchase-section button {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: #7ebdc2;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-      .purchase-section {
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 40px;
-      }
+    .purchase-section button:hover {
+      background-color: #0056b3;
+    }
 
-      .purchase-section button {
-        padding: 15px 30px;
-        font-size: 18px;
-        color: white;
-        background-color: #7ebdc2;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+    .invitation-section {
+      margin-top: 20px;
+      text-align: center;
+    }
 
-      .purchase-section button:hover {
-        background-color: #0056b3;
-      }
+    .invitation-section table {
+      margin: 0 auto;
+      border-spacing: 20px;
+    }
 
-      .invitation-section {
-        margin-top: 20px;
-        text-align: center;
-      }
+    .invitation-section td {
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+    }
 
-      .invitation-section table {
-        margin: 0 auto;
-        border-spacing: 20px;
-        /* Adds spacing between table cells */
-      }
+    .invitation-section img {
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 0 auto;
+    }
 
-      .invitation-section td {
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-      }
+    .main-image {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      .invitation-section img {
-        width: 100%;
-        max-width: 300px;
-        display: block;
-        margin: 0 auto;
-      }
+    .main-image img {
+      max-width: 100%;
+      height: auto;
+    }
 
+    h1,
+    h2,
+    h3 {
+      color: #7ebdc2;
+    }
 
-      .main-image {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .main-image img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      h1,
-      h2,
-      h3 {
-        color: #7ebdc2;
-
-      }
-       .video-container {
+    .video-container {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 20px;
     }
 
-    </style>
-  </head>
+    /* Pink color styles */
+    .pink-link a {
+      color: #e5a9a9;
+    }
 
-  <body>
-    <div class="container">
-      <div class="content">
-        <div class="main-image">
-          <img src="https://yuvaleizik.github.io/website/images/yuledet home.jpg" alt="תמונה ראשית">
-        </div>
-        <div class="text">
-          <h1>
-            Ola Baby הוא אלבום ייחודי בו תוכלו לתעד את כל ההתחלות הראשונות של הבייבי שלכם, החל משלב ההריון ועד גיל שנה.
-          </h1>
+    .pink-purchase-section button {
+      background-color: #e5a9a9;
+    }
 
-          <p class="highlighted-text">
-            <b>
+    .pink-purchase-section button:hover {
+      background-color: #d48a8a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="main-image">
+        <img src="https://yuvaleizik.github.io/website/images/yuledet home.jpg" alt="תמונה ראשית">
+      </div>
+      <div class="text">
+        <h1>
+          Ola Baby הוא אלבום ייחודי בו תוכלו לתעד את כל ההתחלות הראשונות של הבייבי שלכם, החל משלב ההריון ועד גיל שנה.
+        </h1>
+
+        <p class="highlighted-text">
+          <b>
             איזה מרגשים הם הימים הראשונים.<br>
-                        הבייבי נראה כמו פלא של ממש, כמו נס שלא היה כמוהו מעולם.
+            הבייבי נראה כמו פלא של ממש, כמו נס שלא היה כמוהו מעולם.
+          </b>
+        </p>
 
-            </b>
-          </p>
-          
-          <p>
-            את לא מאמינה כמה מהר שוכחים את הימים הראשונים האלה
-            וכמה מהר הם גדלים ומשתנים.
-
-          </p>
-          <p>
-            לא יהיה נפלא שתישאר לך מזכרת מהאירוע החד-פעמי הזה?
-
-          </p>
-          <p>
-            אלבום ברכות ליולדת, מתנה מקורית ומרגשת!
-          </p>
-        </div>
-        <div class="video-container">
+        <p>
+          את לא מאמינה כמה מהר שוכחים את הימים הראשונים האלה
+          וכמה מהר הם גדלים ומשתנים.
+        </p>
+        <p>
+          לא יהיה נפלא שתישאר לך מזכרת מהאירוע החד-פעמי הזה?
+        </p>
+        <p>
+          אלבום ברכות ליולדת, מתנה מקורית ומרגשת!
+        </p>
+      </div>
+      <div class="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Jpf_iBnhxkY?si=VrIaqBNHDeKtOcbg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
-        <div class="invitation-section">
-          <img src="https://yuvaleizik.github.io/website/images/ola baby.jpg" alt="אלבום Goldi">
-          <div class="link">
-            <a href="https://bit.ly/45grpUg" target="_blank">להצצה באלבום ola baby לבנות</a>
-          </div>
+      <div class="invitation-section pink-link">
+        <img src="https://yuvaleizik.github.io/website/images/ola baby.jpg" alt="אלבום Goldi">
+        <div class="link">
+          <a href="https://bit.ly/45grpUg" target="_blank">להצצה באלבום ola baby לבנות</a>
         </div>
-
-        <div class="purchase-section">
-          <button onclick="window.open('https://icredit.rivhit.co.il/payment/PaymentFullPage.aspx?GroupId=2ab3e079-434a-4a05-9a23-c5d77742ef89 ', '_blank');">לרכישה מאובטחת</button>
-        </div>
-        <div class="invitation-section">
-
-          <img src="https://yuvaleizik.github.io/website/images/ola baby boys.jpg" alt="אלבום Rose">
-          <div class="link">
-            <a href="https://bit.ly/3WhRbDD" target="_blank">להצצה באלבום ola baby לבנים</a>
-          </div>
-        </div>
-
-        <div class="purchase-section">
-          <button onclick="window.open('https://icredit.rivhit.co.il/payment/PaymentFullPage.aspx?GroupId=662aad2b-0da1-449a-a9e8-235d20a27832', '_blank');">לרכישה מאובטחת</button>
-        </div>
-
-        <div class="text">
-          <h3>אלבום אולה בייבי</h3>
-          <ul>
-            <li>ייחודי בגודלו ובעיצובו</li>
-            <li>גודל האלבום 28*28 ס״מ (ריבוע)</li>
-            <li>כריכה קשה ודפי פנים המיועדים לכתיבה באיכות גבוהה</li>
-            <li>54 עמודים</li>
-            <li>קיים בשני סוגים: אולה בייבי לבן ואולה בייבי לבת</li>
-            <li>כרטיסיות התפתחות (בתשלום נוסף)</li>
-            <li>תעודת לידה</li>
-          </ul>
-        </div>
-
-        <p>
-
-        </p>
-
-
       </div>
+
+      <div class="purchase-section pink-purchase-section">
+        <button onclick="window.open('https://icredit.rivhit.co.il/payment/PaymentFullPage.aspx?GroupId=2ab3e079-434a-4a05-9a23-c5d77742ef89', '_blank');">לרכישה מאובטחת</button>
+      </div>
+
+      <div class="invitation-section">
+        <img src="https://yuvaleizik.github.io/website/images/ola baby boys.jpg" alt="אלבום Rose">
+        <div class="link">
+          <a href="https://bit.ly/3WhRbDD" target="_blank">להצצה באלבום ola baby לבנים</a>
+        </div>
+      </div>
+
+      <div class="purchase-section">
+        <button onclick="window.open('https://icredit.rivhit.co.il/payment/PaymentFullPage.aspx?GroupId=662aad2b-0da1-449a-a9e8-235d20a27832', '_blank');">לרכישה מאובטחת</button>
+      </div>
+
+      <div class="text">
+        <h3>אלבום אולה בייבי</h3>
+        <ul>
+          <li>ייחודי בגודלו ובעיצובו</li>
+          <li>גודל האלבום 28*28 ס״מ (ריבוע)</li>
+          <li>כריכה קשה ודפי פנים המיועדים לכתיבה באיכות גבוהה</li>
+          <li>54 עמודים</li>
+          <li>קיים בשני סוגים: אולה בייבי לבן ואולה בייבי לבת</li>
+          <li>כרטיסיות התפתחות (בתשלום נוסף)</li>
+          <li>תעודת לידה</li>
+        </ul>
+      </div>
+
     </div>
-  </body>
+  </div>
+</body>
 
 </html>
