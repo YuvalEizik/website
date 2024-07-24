@@ -36,7 +36,15 @@
         h1, h2, h3 {
             color: #7ebdc2;
         }
+         .clickable-image {
+            cursor: pointer;
+        }
     </style>
+     <script>
+        function navigateParent(url) {
+            window.parent.location.href = url;
+        }
+    </script>
 </head>
 <body>
 
@@ -65,8 +73,9 @@
     <table>
         <tr>
             <td>
-                <a href="URL_TO_ALBUM_1"><img src="https://yuvaleizik.github.io/website/images/בת מצווה זהב.jpg" alt="אלבום בת מצווה"></a>
-                <p>אלבום בת מצווה</p>
+                 <div class="clickable-image" onclick="navigateParent('https://www.mybookalbum.co.il/אלבום-בת-מצווה-1')">
+        <img src="https://yuvaleizik.github.io/website/images/בת מצווה זהב.jpg" alt="אלבום בת מצווה">
+    </div>
             </td>
             <td>
                 <a href="URL_TO_ALBUM_2"><img src="https://yuvaleizik.github.io/website/images/חדש אלבום ברכות לבת מצווה ורוד.jpg" alt="אלבום בת מצווה"></a>
