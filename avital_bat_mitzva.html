@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אלבום הברכות של “MyBook”</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+<script>
+function resizeIframe(iframe) {
+    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+}
 
+var iframe = document.getElementById('myIframe');
+iframe.onload = function() {
+    resizeIframe(iframe);
+};
+
+// Re-adjust the height when the window is resized
+window.onresize = function() {
+    resizeIframe(iframe);
+};
+</script>
     <style>
       body {
         font-family: 'Assistant', sans-serif;
