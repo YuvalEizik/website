@@ -1,183 +1,185 @@
 <!DOCTYPE html>
 <html lang="he">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>עיצוב הזמנה לבת מצווה</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-      body {
-        font-family: 'Assistant', sans-serif;
-        margin: 0;
-        padding: 0;
-        direction: rtl;
-      }
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
 
+        .link {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
 
+        .link a {
+            text-decoration: none;
+            color: #7ebdc2;
+            font-weight: bold;
+        }
 
-      .link {
-        text-align: center;
-        margin-top: 5px;
-        /* Reduced margin-top */
-        margin-bottom: 5px;
-        /* Added margin-bottom adjustment */
-      }
+        .video-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-      .link a {
-        text-decoration: none;
-        color: #7ebdc2;
-        font-weight: bold;
-      }
+        .purchase-section {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-      .video-container {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+        .purchase-section button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #7ebdc2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-      .purchase-section {
-        text-align: center;
-        margin-top: 20px;
-      }
+        .purchase-section button:hover {
+            background-color: #0056b3;
+        }
 
-      .purchase-section button {
-        padding: 15px 30px;
-        font-size: 18px;
-        color: white;
-        background-color: #7ebdc2;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+        .invitation-section {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-      .purchase-section button:hover {
-        background-color: #0056b3;
-      }
+        .invitation-section table {
+            margin: 0 auto;
+            border-spacing: 20px;
+        }
 
-      .invitation-section {
-        margin-top: 20px;
-        text-align: center;
-      }
+        .invitation-section td {
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-      .invitation-section table {
-        margin: 0 auto;
-        border-spacing: 20px;
-        /* Adds spacing between table cells */
-      }
+        .invitation-section img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
+        }
 
-      .invitation-section td {
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-      }
+        .text {
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-      .invitation-section img {
-        width: 100%;
-        max-width: 300px;
-        display: block;
-        margin: 0 auto;
-      }
+        h1,
+        h2,
+        h3 {
+            color: #7ebdc2;
+            text-align: center;
+        }
 
-     .text {
-  margin-bottom: 20px;
-  text-align: center; /* Center the text */
-}
+        .add-to-cart-button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #7ebdc2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-h1,
-h2,
-h3 {
-  color: #7ebdc2;
-  text-align: center; /* Centering the headings */
-}
-
-
+        .add-to-cart-button:hover {
+            background-color: #0056b3;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div class="text">
-      <p>הארוע מתקרב ואתם רוצים לוודא שההזמנה שלכם תהיה ייחודית ומרשימה?
-      </p>
-      <p>
-
-        אנחנו כאן בשבילכם עם עיצובי הזמנות.
-      </p>
-      <p>
-
-        אתם בוחרים את הדגם שאתם אוהבים ושולחים לנו את כל הפרטים ואנחנו נשלח לכם את ההזמנה מעוצבת לוואצאפ.
-      </p>
-      <p>
-        עיצוב הזמנה (מבין הדוגמאות) - 90 ש״ח.
-      </p>
-
+        <p>הארוע מתקרב ואתם רוצים לוודא שההזמנה שלכם תהיה ייחודית ומרשימה?
+        </p>
+        <p>אנחנו כאן בשבילכם עם עיצובי הזמנות.
+        </p>
+        <p>אתם בוחרים את הדגם שאתם אוהבים ושולחים לנו את כל הפרטים ואנחנו נשלח לכם את ההזמנה מעוצבת לוואצאפ.
+        </p>
+        <p>עיצוב הזמנה (מבין הדוגמאות) - 90 ש״ח.
+        </p>
     </div>
     <h2>עיצוב הזמנה לבת מצווה</h2>
 
     <div class="invitation-section">
-      <table>
-        <tr>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 1.jpg" alt="הזמנה 1">
-            <p>דגם נועה</p>
-          </td>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 2.jpg" alt="הזמנה 2">
-            <p>דגם נויה</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 3.jpg" alt="הזמנה 3">
-            <p>דגם ליאן</p>
-          </td>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 4.jpg" alt="הזמנה 4">
-            <p>דגם ליאל</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 5.jpg" alt="הזמנה 5">
-            <p>דגם שוהם</p>
-          </td>
-          <td>
-            <img src="https://yuvaleizik.github.io/website/images/תמונה 6.jpg" alt="הזמנה 6">
-            <p>דגם רומי</p>
-          </td>
-        </tr>
-
-        <table />
-        <h2>עיצוב הזמנה לבר מצווה</h2>
-        <div class="invitation-section">
-
-          <table>
-
+        <table>
             <tr>
-              <td>
-                <img src="https://yuvaleizik.github.io/website/images/7.jpg" alt="הזמנה 7">
-                <p>דגם עומר</p>
-              </td>
-              <td>
-                <img src="https://yuvaleizik.github.io/website/images/8.jpg" alt="הזמנה8">
-                <p>דגם רביד</p>
-              </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 1.jpg" alt="הזמנה 1">
+                    <p>דגם נועה</p>
+                </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 2.jpg" alt="הזמנה 2">
+                    <p>דגם נויה</p>
+                </td>
             </tr>
             <tr>
-              <td>
-                <img src="https://yuvaleizik.github.io/website/images/9.jpg" alt="הזמנה 9">
-                <p>דגם ריף</p>
-              </td>
-              <td>
-                <img src="https://yuvaleizik.github.io/website/images/10.jpg" alt="הזמנה 10">
-                <p>דגם ליאור</p>
-              </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 3.jpg" alt="הזמנה 3">
+                    <p>דגם ליאן</p>
+                </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 4.jpg" alt="הזמנה 4">
+                    <p>דגם ליאל</p>
+                </td>
             </tr>
-          </table>
-        </div>
-      </table>
+            <tr>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 5.jpg" alt="הזמנה 5">
+                    <p>דגם שוהם</p>
+                </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/תמונה 6.jpg" alt="הזמנה 6">
+                    <p>דגם רומי</p>
+                </td>
+            </tr>
+        </table>
+        <button class="add-to-cart-button" onclick="location.href='https://www.mybookalbum.co.il/%D7%90%D7%9C%D7%91%D7%95%D7%9D-%D7%91%D7%AA-%D7%9E%D7%A6%D7%95%D7%95%D7%94-1';">הוסף לסל</button>
     </div>
-  </body>
+
+    <h2>עיצוב הזמנה לבר מצווה</h2>
+    <div class="invitation-section">
+        <table>
+            <tr>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/7.jpg" alt="הזמנה 7">
+                    <p>דגם עומר</p>
+                </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/8.jpg" alt="הזמנה 8">
+                    <p>דגם רביד</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/9.jpg" alt="הזמנה 9">
+                    <p>דגם ריף</p>
+                </td>
+                <td>
+                    <img src="https://yuvaleizik.github.io/website/images/10.jpg" alt="הזמנה 10">
+                    <p>דגם ליאור</p>
+                </td>
+            </tr>
+        </table>
+        <button class="add-to-cart-button" onclick="location.href='https://www.mybookalbum.co.il/%D7%90%D7%9C%D7%91%D7%95%D7%9D-%D7%91%D7%A8-%D7%9E%D7%A6%D7%95%D7%95%D7%94-1';">הוסף לסל</button>
+    </div>
+
+</body>
 
 </html>
