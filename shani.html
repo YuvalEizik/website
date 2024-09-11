@@ -4,35 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yoga Course Table</title>
+      <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+      font-family: 'Assistant', sans-serif;
+            background-color: #ffffff; /* White background */
             color: #333;
+            margin: 0;
+            padding: 0;
         }
         table {
-            width: 60%;
-            margin: 50px auto;
+            width: 100%; /* Full width table */
+            margin: 0;
             border-collapse: collapse;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em; /* Text size for bigger readability */
         }
         th, td {
-            padding: 15px;
+            padding: 20px; /* Larger padding for bigger table cells */
             text-align: center;
         }
         th {
             background-color: #8159b0;
             color: #ffffff;
-            font-size: 1.2em;
+            font-size: 1.8em; /* Increase header text size */
             border-bottom: 2px solid #ddd;
         }
         td {
             background-color: #ffffff;
             color: #333;
             border-bottom: 1px solid #ddd;
+            width: 50%; /* Each cell takes 50% of the width */
         }
         tr:hover td {
-            background-color: #f0e6f6;
+            background-color: #f0e6f6; /* Soft purple hover effect */
         }
         td:first-child {
             border-right: 1px solid #ddd;
@@ -42,7 +48,7 @@
         }
         @media (max-width: 768px) {
             table {
-                width: 90%;
+                width: 100%; /* Full width even on smaller screens */
             }
         }
     </style>
