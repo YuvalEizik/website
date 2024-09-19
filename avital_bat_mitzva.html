@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אלבום הברכות של “MyBook”</title>
@@ -22,163 +22,176 @@
         };
     </script>
     <style>
-      body {
-        font-family: 'Assistant', sans-serif;
-        margin: 0;
-        padding: 0;
-        direction: rtl;
-      }
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
 
-      .text {
-        margin-bottom: 20px;
-      }
+        .text {
+            margin-bottom: 20px;
+        }
 
-      .link {
-        text-align: center;
-        margin-top: 1px;
-        /* Reduce the margin-top to decrease spacing */
-        margin-bottom: 25px;
-        /* You can also adjust margin-bottom if needed */
-      }
+        .link {
+            text-align: center;
+            margin-top: 1px;
+            margin-bottom: 25px;
+        }
 
-      .link a {
-        text-decoration: none;
-        color: #7ebdc2;
-        font-weight: bold;
-      }
+        .link a {
+            text-decoration: none;
+            color: #7ebdc2;
+            font-weight: bold;
+        }
 
-      .video-container {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+        .video-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-      .purchase-section {
-        text-align: center;
-        margin-top: 20px;
-      }
+        .purchase-section {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-      .purchase-section button {
-        padding: 15px 30px;
-        font-size: 18px;
-        color: white;
-        background-color: #7ebdc2;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+        .purchase-section button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #7ebdc2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-      .purchase-section button:hover {
-        background-color: #0056b3;
-      }
+        .purchase-section button:hover {
+            background-color: #0056b3;
+        }
 
-      .invitation-section {
-        margin-top: 20px;
-        text-align: center;
-      }
+        .invitation-section {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-      .invitation-section table {
-        margin: 0 auto;
-        border-spacing: 20px;
-        /* Adds spacing between table cells */
-      }
+        .invitation-section table {
+            margin: 0 auto;
+            border-spacing: 20px;
+        }
 
-      .invitation-section td {
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-      }
+        .invitation-section td {
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-      .invitation-section img {
-        width: 100%;
-        max-width: 300px;
-        display: block;
-        margin: 0 auto;
-      }
+        .invitation-section img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
+        }
 
-      .main-image {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+        .main-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-      .main-image img {
-        max-width: 100%;
-        height: auto;
-      }
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+        }
 
-      h1, h2, h3 {
-        color: #7ebdc2;
-      }
+        h1,
+        h2,
+        h3 {
+            color: #7ebdc2;
+        }
 
-      table {
-        width: 100%;
-        table-layout: fixed;
-      }
+        /* Default layout: stacked on mobile */
+        .row {
+            display: flex;
+            flex-direction: column;
+        }
 
-      td {
-        vertical-align: top;
-        padding: 10px;
-      }
+        /* Layout for larger screens: side by side */
+        @media (min-width: 768px) {
+            .row {
+                flex-direction: row;
+            }
+
+            .column {
+                width: 50%;
+                padding: 10px;
+            }
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <div class="content">
-        <div class="main-image">
-          <img src="https://yuvaleizik.github.io/website/images/ראשית.jpg" alt="תמונה ראשית">
-        </div>
-
-        <table>
-          <tr>
-            <td>
-              <div class="text">
-                <h1>אלבום הברכות של “MyBook” - המתנה המושלמת לבת מצווה!</h1>
-                <p>היום הגדול מתקרב וההתרגשות בשיאה... זה בדיוק הרגע הנכון לאלבום ברכות שיתעד את הרגעים המיוחדים והמרגשים ביותר מבת המצווה.</p>
-                <p>האלבום בעיצוב חדשני וייחודי ובשילוב מושלם של ברכות מרגשות ותמונות של הנסיכה - שאתן בוחרות!</p>
-                <p>זה הרגע להעניק לה מתנה שהיא מזכרת ערכית ומדהימה שתישאר איתה לכל החיים!</p>
-              </div>
-            </td>
-            <td>
-              <div class="video-container">
-                <iframe width="315" height="560" src="https://www.youtube.com/embed/P4qhgFTIAuM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none;"></iframe>
-              </div>
-            </td>
-          </tr>
-        </table>
-
-        <div class="invitation-section" style="text-align: center;">
-          <div class="link" style="margin-bottom: 20px;">
-            <iframe src="https://bit.ly/4ci3bvV" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
-            <div style="font-size: 18px; font-weight: bold;">
-              לצפיה באלבום Goldi
+        <div class="content">
+            <div class="main-image">
+                <img src="https://yuvaleizik.github.io/website/images/ראשית.jpg" alt="תמונה ראשית">
             </div>
-          </div>
 
-          <div class="link" style="margin-bottom: 20px;">
-            <iframe src="https://bit.ly/4cB8rL1" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
-            <div style="font-size: 18px; font-weight: bold;">
-              לצפיה באלבום Rose
+            <div class="row">
+                <div class="column">
+                    <div class="text">
+                        <h1>אלבום הברכות של “MyBook” - המתנה המושלמת לבת מצווה!</h1>
+                        <p>היום הגדול מתקרב וההתרגשות בשיאה... זה בדיוק הרגע הנכון לאלבום ברכות שיתעד את הרגעים המיוחדים והמרגשים ביותר מבת המצווה.</p>
+                        <p>האלבום בעיצוב חדשני וייחודי ובשילוב מושלם של ברכות מרגשות ותמונות של הנסיכה - שאתן בוחרות!</p>
+                        <p>זה הרגע להעניק לה מתנה שהיא מזכרת ערכית ומדהימה שתישאר איתה לכל החיים!</p>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="video-container">
+                        <iframe width="315" height="560" src="https://www.youtube.com/embed/P4qhgFTIAuM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none;"></iframe>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="link" style="margin-bottom: 20px;">
-            <iframe src="https://bit.ly/3VzN7yx" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
-            <div style="font-size: 18px; font-weight: bold;">
-              לצפיה באלבום Lilac
+            <div class="invitation-section" style="text-align: center;">
+                <div class="link" style="margin-bottom: 20px;">
+                    <iframe src="https://bit.ly/4ci3bvV" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
+                    <div style="font-size: 18px; font-weight: bold;">
+                        לצפיה באלבום Goldi
+                    </div>
+                </div>
+
+                <div class="link" style="margin-bottom: 20px;">
+                    <iframe src="https://bit.ly/4cB8rL1" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
+                    <div style="font-size: 18px; font-weight: bold;">
+                        לצפיה באלבום Rose
+                    </div>
+                </div>
+
+                <div class="link" style="margin-bottom: 20px;">
+                    <iframe src="https://bit.ly/3VzN7yx" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
+                    <div style="font-size: 18px; font-weight: bold;">
+                        לצפיה באלבום Lilac
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="purchase-section">
-          <button onclick="window.location.href='https://bit.ly/3BVR4oS'" target="_blank">לרכישה מאובטחת</button>
-        </div>
+            <div class="purchase-section">
+                <button onclick="window.location.href='https://bit.ly/3BVR4oS'" target="_blank">לרכישה מאובטחת</button>
+            </div>
 
-        <div class="text">
-          <h2>מה הופך את אלבום הברכות שלנו למיוחד כל כך?</h2>
-          <p><b>איכות בלתי מתפשרת</b> – דפים עבים באיכות מעולה המיועדים לכתיבה כדי שכל ברכה, כל מילה וכל זיכרון יישארו לנצח.</p>
-          <p><b>ברכות אישיות ומיוחדות</b> – מקום ייחודי להוסיף ברכות חמות מכל הלב, תמונות מרגשות ורגעים יקרים מהמשפחה והחברים.</p>
-          <p>אתם בוחרים את הגודל והעיצוב מבין 3 האופציות הקיימות.<br>
-            האלבום קיים ב-2 גדלים: גדול (29x29 ס״מ) או בינוני (24x24 ס״מ)</p>
-          <h3>למה זה בדיוק מה שאתם צריכים?</h3>
-          <p>האלבום הוא מתנה מרגשת, ערכית ומיוחדת שישמח את הילדה ביום בת המצווה, ילווה אותה גם בעתיד ויזכיר לה את הרגעים המיוחדים והברכות מכל קרוב ואהוב.</p>
-          <p><b>חוויה כיפית להכנה</b> – אתם שולחים לנו את
+            <div class="text">
+                <h2>מה הופך את אלבום הברכות שלנו למיוחד כל כך?</h2>
+                <p><b>איכות בלתי מתפשרת</b> – דפים עבים באיכות מעולה המיועדים לכתיבה כדי שכל ברכה, כל מילה וכל זיכרון יישארו לנצח.</p>
+                <p><b>ברכות אישיות ומיוחדות</b> – מקום ייחודי להוסיף ברכות חמות מכל הלב, תמונות מרגשות ורגעים יקרים מהמשפחה והחברים.</p>
+                <p>אתם בוחרים את הגודל והעיצוב מבין 3 האופציות הקיימות.<br> האלבום קיים ב-2 גדלים: גדול (29x29 ס״מ) או בינוני (24x24 ס״מ)</p>
+                <h3>למה זה בדיוק מה שאתם צריכים?</h3>
+                <p>האלבום הוא מתנה מרגשת, ערכית ומיוחדת שישמח את הילדה ביום בת המצווה, ילווה אותה גם בעתיד ויזכיר לה את הרגעים המיוחדים והברכות מכל קרוב ואהוב.</p>
+                <p><b>חוויה כיפית להכנה</b> – אתם שולחים לנו את התמונות, אנחנו מדפיסים בהתאם לכמות ולמידה המתאימה לאלבום ואת התמונות אתם מדביקים במקומות המיועדים לכך. חוויה כיפית וקלה המשתפת את הילדה בעיצוב האלבום.</p>
+                <p>אני כאן לכל שאלה ועזרה שתצטרכי,<br> באהבה רבה,<br> אביטל</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
