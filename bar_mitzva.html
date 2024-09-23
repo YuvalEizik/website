@@ -23,6 +23,9 @@
       text-align: center;
       margin-top: 1px;
       margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .link a {
@@ -105,6 +108,21 @@
     h3 {
       color: #7ebdc2;
     }
+
+    .individual-purchase-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #7ebdc2;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .individual-purchase-button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 
@@ -115,10 +133,8 @@
         <img src="https://yuvaleizik.github.io/website/images/home bar mitzva.jpg" alt="תמונה ראשית">
       </div>
       <div class="text">
-        <h1>אלבום הברכות המושלם לבר המצווה – המתנה שתישאר מזכרת לעד!
-        </h1>
-        <p>היום הגדול של הילד שלכם מתקרב – יום בר המצווה המיוחד! אתם מחפשים את הדרך האידיאלית להעניק לו מזכרת מרגשת שתשאיר חותם בלב לנצח? הכירו את אלבום הברכות לבר מצווה שלנו, מתנה מיוחדת שתעטוף את הילד באהבה וזיכרונות.
-        </p>
+        <h1>אלבום הברכות המושלם לבר המצווה – המתנה שתישאר מזכרת לעד!</h1>
+        <p>היום הגדול של הילד שלכם מתקרב – יום בר המצווה המיוחד! אתם מחפשים את הדרך האידיאלית להעניק לו מזכרת מרגשת שתשאיר חותם בלב לנצח? הכירו את אלבום הברכות לבר מצווה שלנו, מתנה מיוחדת שתעטוף את הילד באהבה וזיכרונות.</p>
       </div>
       <div class="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/9CQJmz1HgaA?si=hdHws8V7H8i4A11i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -126,39 +142,33 @@
 
       <div class="invitation-section" style="text-align: center;">
         <div class="link" style="margin-bottom: 20px;">
-          <iframe src="https://bit.ly/4d0L0Lp" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
-          <div style="font-size: 18px; font-weight: bold;">
+           <div style="font-size: 18px; font-weight: bold;">
             לצפיה באלבום Sky
           </div>
+          <iframe src="https://bit.ly/4d0L0Lp" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
+         
+          <button class="individual-purchase-button" onclick="window.location.href='https://www.mybookalbum.co.il/חנות/אלבום-סקיי';">לרכישה מאובטחת</button>
         </div>
 
         <div class="link" style="margin-bottom: 20px;">
-          <iframe src="https://bit.ly/45OvwHL" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
           <div style="font-size: 18px; font-weight: bold;">
             לצפיה באלבום Star
           </div>
+          <iframe src="https://bit.ly/45OvwHL" style="width: 100%; max-width: 600px; height: 400px; border: none;"></iframe>
+          
+          <button class="individual-purchase-button" onclick="window.location.href='https://www.mybookalbum.co.il/חנות/אלבום-סטאר';">לרכישה מאובטחת</button>
         </div>
-      </div>
-
-      <div class="purchase-section">
-        <button onclick="window.location.href='https://bit.ly/3BVR4oS'" target="_blank">לרכישה מאובטחת</button>
       </div>
 
       <div class="text">
         <h2>מה הופך את אלבום הברכות שלנו למיוחד כל כך?</h2>
-        <p>
-          עיצוב מיוחד ועכשווי המעוצב בקפידה.
-        </p>
+        <p>עיצוב מיוחד ועכשווי המעוצב בקפידה.</p>
         <p><b>איכות בלתי מתפשרת</b>– דפים עבים באיכות מעולה המיועדים לכתיבה כדי שכל ברכה, כל מילה וכל זיכרון יישארו לעד.</p>
         <p><b>ברכות אישיות ומיוחדות</b> – מקום ייחודי להוסיף ברכות חמות מכל הלב, תמונות מרגשות ורגעים יקרים מהמשפחה והחברים.</p>
         <p>אתם בוחרים את הגודל והעיצוב מבין 2 האופציות הקיימות.<br> האלבום קיים ב-2 גדלים: גדול (29x29 ס״מ) או בינוני (24x24 ס״מ)</p>
         <h3>למה זה בדיוק מה שאתם צריכים?</h3>
-        <p>
-          האלבום הוא מתנה מתנה מרגשת, ערכית ומיוחדת שישמח את הילד ביום בר המצווה, ילווה אותו גם בעתיד ויזכיר לו את הרגעים המיוחדים והברכות מכל קרוב ואהוב.
-        </p>
-        <p>
-          <b>חוויה כיפית להכנה</b> – אתם שולחים לנו את התמונות, אנחנו מדפיסים בהתאם לכמות ולמידה המתאימה לאלבום ואת התמונות אתם מדביקים במקומות המיועדים לכך.
-        </p>
+        <p>האלבום הוא מתנה מתנה מרגשת, ערכית ומיוחדת שישמח את הילד ביום בר המצווה, ילווה אותו גם בעתיד ויזכיר לו את הרגעים המיוחדים והברכות מכל קרוב ואהוב.</p>
+        <p><b>חוויה כיפית להכנה</b> – אתם שולחים לנו את התמונות, אנחנו מדפיסים בהתאם לכמות ולמידה המתאימה לאלבום ואת התמונות אתם מדביקים במקומות המיועדים לכך.</p>
         <p>אני כאן לכל שאלה ועזרה, <br>באהבה רבה, <br>אביטל</p>
       </div>
     </div>
