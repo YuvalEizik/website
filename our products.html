@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrEssence - Our Story</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        .image {
+            flex: 0 0 400px; /* Fixed size for the image container */
+            max-width: 400px;
+            padding: 0px;
+        }
+        .image img {
+            width: 100%;
+            max-width: 400px; /* Prevent the image from growing beyond this size */
+            height: auto;
+            border-radius: 8px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 0;
+        }
+        .cta button {
+            background-color: #BB0000; /* Red color for the button */
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .cta button:hover {
+            background-color: #CC0000; /* Darker red on hover */
+        }
+
+        /* Mobile adjustments */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .image {
+                order: 2;
+                width: 100%;
+                max-width: none;
+                text-align: center;
+            }
+            .content {
+                order: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="https://yuvaleizik.github.io/website/images/our products.jpg" alt="Our Story Image">
+        </div>
+        <div class="content">
+           <p>The company's first development, its flagship product, is <strong>FrEssence Perfume</strong> - a unisex preparation adapted for active women and men in a variety of excellent fragrances.</p>
+        <p>The double formula is particularly effective in neutralizing the smell of sweat immediately and envelops the body in a fragrant cloud that cannot be resisted for long hours. It does not contain aluminum and odor blockers and has not been tested on animals.</p>
+        <p>From now on, you can feel as fresh as if you just got out of the shower, even at the end of a particularly active day. The perfume enhances your presence and sets you apart from others. The products have been approved by the American FDA.</p>
+        <p><strong>Over 90% of users</strong> of the perfume liked it, reported a significant improvement in the freshness of their body, and were willing to purchase it again and again.</p>
+      
+        </div>
+    </div>
+    <div class="cta">
+        <button onclick="location.href='#'">Shop Now</button>
+    </div>
+</body>
+</html>
