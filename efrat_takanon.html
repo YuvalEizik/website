@@ -12,51 +12,116 @@
       body {
         font-family: "Assistant", sans-serif;
       }
+
+      h2, h3 {
+        cursor: pointer;
+        color: #000; /* Changed to black */
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+
+      .collapsible-content {
+        display: none;
+        margin-bottom: 15px;
+      }
+
+      .collapsible-header {
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      .collapsible-header:hover {
+        background-color: #e0e0e0;
+      }
+
+      .icon {
+        margin-left: 8px;
+        font-size: 20px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
-    <h3>אפשרויות המשלוח-</h3>
-    <ol>
-      <li>
-        <strong>איסוף עצמי:</strong> מרחוב מנורה 7 תל-אביב. בתיאום מראש. לאחר
-        ביצוע ההזמנה והתשלום תקבלו הודעה במייל שניתן לאסוף את המשלוח.
-      </li>
-      <li>
-        <strong>משלוח עד הבית:</strong> באמצעות שליח בעלות של 35 ₪. זמן אספקה
-        3-5 ימי עסקים.
-      </li>
-      <li>
-        <strong>משלוח לנקודת שירות:</strong> קרובה לאזור מגורייך בעלות של 17 ₪.
-        זמן אספקה 3-5 ימי עסקים. משלוח שלא ייאסף במסגרת הזמן שחברת השליחות
-        מציינת בהודעה ישלח בחזרה אלינו. משלוח חדש יידרש דמי משלוח חדשים.
-      </li>
-      <li>
-        <strong>משלוח חינם:</strong> בהזמנה מעל 300 ₪ משלוח בחינם ע"י שליח. זמן
-        אספקה 3-5 ימי עסקים.
-      </li>
-      <li><strong>אזורי משלוח:</strong> המשלוחים מתאפשרים ברחבי ישראל בלבד.</li>
-      <li>
-        <strong>משלוחים מחו"ל:</strong> להזמנת משלוחים מחוץ לארץ נא לפנות לטלפון
-        054-4525607.
-      </li>
-    </ol>
 
-    <h2>תנאי התשלום</h2>
-    <p>ניתן לשלם במגוון כרטיסי אשראי.</p>
-    <p>התשלום מתבצע בצורה מאובטחת ביותר של חברת ?</p>
-    <p>ניתן לשלם באמצעות ביט.</p>
-    
-        <div class="product-returns">
-        <h2>החזרה והחלפת מוצרים</h2>
-        <p>ניתן להחזיר מוצר באריזה המקורית שלו, עם תווית המותג עליו ושלא נעשה בו שימוש. ההחזרה תתבצע תוך 14 יום מיום קבלת המוצר. עלות משלוח ההחזרה תהיה על חשבון הלקוח, ודמי המשלוח לא יוחזרו.</p>
-        <p>החזר כספי יינתן בהתאם לתקנות ורק לכרטיס האשראי שממנו בוצעה העסקה, תוך הצגת חשבונית הרכישה. הלקוח יזוכה בכרטיס האשראי שבו הוא שילם בלבד, ולא בשום כרטיס אחר.</p>
-        <p>כמו כן, ניתן יהיה להחליף את המוצר תוך 14 יום מיום קבלת המוצר, במוצר אחר באותו שווי כספי מהמגוון המוצג באתר.</p>
+    <div class="collapsible-section">
+      <h3 class="collapsible-header" onclick="toggleCollapse('shipping')">
+        <span class="icon" id="icon-shipping">+</span> אפשרויות המשלוח
+      </h3>
+      <div id="shipping" class="collapsible-content">
+        <ol>
+          <li><strong>איסוף עצמי:</strong> מרחוב מנורה 7 תל-אביב. בתיאום מראש.</li>
+          <li><strong>משלוח עד הבית:</strong> באמצעות שליח בעלות של 35 ₪. זמן אספקה 3-5 ימי עסקים.</li>
+          <li><strong>משלוח לנקודת שירות:</strong> בעלות של 17 ₪. זמן אספקה 3-5 ימי עסקים.</li>
+          <li><strong>משלוח חינם:</strong> בהזמנה מעל 300 ₪. זמן אספקה 3-5 ימי עסקים.</li>
+          <li><strong>אזורי משלוח:</strong> המשלוחים מתאפשרים ברחבי ישראל בלבד.</li>
+          <li><strong>משלוחים מחו"ל:</strong> להזמנות מחוץ לארץ נא לפנות לטלפון 054-4525607.</li>
+        </ol>
+      </div>
     </div>
 
-    <div class="customer-service">
-        <h2>שרות לקוחות</h2>
-        <p>לכל שאלה, שינויים בהזמנה או בקשות מיוחדות מוזמנים ליצור קשר לטלפון 054-4525607 בין השעות 9-19.</p>
-        <p>או לשלוח מייל לכתובת – <a href="mailto:efrat.benatar@gmail.com">efrat.benatar@gmail.com</a></p>
+    <div class="collapsible-section">
+      <h3 class="collapsible-header" onclick="toggleCollapse('payment')">
+        <span class="icon" id="icon-payment">+</span> תנאי התשלום
+      </h3>
+      <div id="payment" class="collapsible-content">
+        <p>ניתן לשלם במגוון כרטיסי אשראי.</p>
+        <p>התשלום מתבצע בצורה מאובטחת ביותר של חברת ?</p>
+        <p>ניתן לשלם באמצעות ביט.</p>
+      </div>
     </div>
+
+    <div class="collapsible-section">
+      <h3 class="collapsible-header" onclick="toggleCollapse('returns')">
+        <span class="icon" id="icon-returns">+</span> החזרה והחלפת מוצרים
+      </h3>
+      <div id="returns" class="collapsible-content">
+        <p>ניתן להחזיר מוצר באריזתו המקורית תוך 14 יום מיום קבלתו.</p>
+        <p>עלות משלוח ההחזרה תהיה על חשבון הלקוח.</p>
+        <p>החזר כספי יינתן רק לכרטיס האשראי ממנו בוצעה העסקה.</p>
+        <p>ניתן להחליף את המוצר תוך 14 יום במוצר אחר באותו שווי כספי.</p>
+      </div>
+    </div>
+
+    <div class="collapsible-section">
+      <h3 class="collapsible-header" onclick="toggleCollapse('customer-service')">
+        <span class="icon" id="icon-customer-service">+</span> שירות לקוחות
+      </h3>
+      <div id="customer-service" class="collapsible-content">
+        <p>לשאלות נוספות, ניתן ליצור קשר בטלפון 054-4525607 בין השעות 9-19.</p>
+        <p>או לשלוח מייל לכתובת: <a href="mailto:efrat.benatar@gmail.com">efrat.benatar@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="collapsible-section">
+      <h3 class="collapsible-header" onclick="toggleCollapse('about')">
+        <span class="icon" id="icon-about">+</span> אודות
+      </h3>
+      <div id="about" class="collapsible-content">
+        <p>שמי אפרת בן עטר, ואני המייסדת והמעצבת של ebastudio.</p>
+        <p>העסק שלי נולד מתוך אהבה ותשוקה ליצירה ואסתטיקה.</p>
+        <p>כל פריט ב- ebastudio מיוצר בישראל, בעבודת יד קפדנית.</p>
+        <p>בסטודיו שלי תמצאו מגוון רחב של מוצרים: תכשיטים לילדים, תכשיטים למבוגרים, אביזרי שיער ועוד.</p>
+      </div>
+    </div>
+
+    <script>
+      function toggleCollapse(sectionId) {
+        const content = document.getElementById(sectionId);
+        const icon = document.getElementById('icon-' + sectionId);
+        
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+          icon.textContent = '+';
+        } else {
+          content.style.display = 'block';
+          icon.textContent = '-';
+        }
+      }
+    </script>
+
   </body>
 </html>
