@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pool Heater Size Calculator</title>
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid #137492;
+      border-radius: 5px;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #137492;
+      margin-top: 0;
+    }
+
+    /* Toggle Switch */
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 15px;
+    }
+    .toggle-label {
+      font-weight: bold;
+      color: #137492;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #137492;
+      border-radius: 34px;
+      transition: 0.4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+    input:checked + .slider {
+      background-color: #0f5a6b;
+    }
+    input:checked + .slider:before {
+      transform: translateX(30px);
+    }
+
+    /* Form Layout */
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      flex: 1;
+      min-width: 170px;
+      color: #137492;
+    }
+    .form-group input {
+      flex: 2;
+      padding: 8px;
+      border: 1px solid #137492;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+
+    /* Button */
+    .calculate-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #137492;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .calculate-btn:hover {
+      background-color: #0f5a6b;
+    }
+
+    /* Result Display */
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #137492;
+      border-radius: 5px;
+      background-color: #e6f7fa;
+      color: #137492;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pool Heater Size Calculator</h1>
+
+    <!-- Toggle Switch for Unit Systems -->
+    <div class="toggle-container">
+      <span class="toggle-label">Imperial</span>
+      <label class="switch">
+        <!-- By default, NOT checked = American; checked = Metric -->
+        <input type="checkbox" id="unitToggle" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Metric</span>
+    </div>
+
+    <!-- Form Fields -->
+    <div class="form-group">
+      <label id="volumeLabel" for="volumeInput">Pool Volume (gallons):</label>
+      <input type="number" id="volumeInput" />
+    </div>
+    <div class="form-group">
+      <label id="currentTempLabel" for="currentTempInput">Current Temperature (°F):</label>
+      <input type="number" id="currentTempInput" />
+    </div>
+    <div class="form-group">
+      <label id="desiredTempLabel" for="desiredTempInput">Desired Temperature (°F):</label>
+      <input type="number" id="desiredTempInput" />
+    </div>
+    <div class="form-group">
+      <label for="hoursInput">Heating Time (hours):</label>
+      <input type="number" id="hoursInput" />
+    </div>
+
+    <!-- Calculate Button -->
+    <button class="calculate-btn" id="calculateBtn">Calculate Heater Size</button>
+
+    <!-- Result -->
+    <div class="result" id="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    // --------------------------------------
+    // DEFAULT VALUES & INITIAL STATE
+    // --------------------------------------
+    const defaultAmerican = {
+      volume: 15000,     // gallons
+      currentTemp: 70,   // °F
+      desiredTemp: 80,   // °F
+      hours: 24
+    };
+    const defaultMetric = {
+      volume: 57000,     // liters (≈ 15000 gallons)
+      currentTemp: 21,   // °C (≈ 70°F)
+      desiredTemp: 27,   // °C (≈ 80°F)
+      hours: 24
+    };
+
+    // On page load, set American as default
+    const unitToggle = document.getElementById("unitToggle");
+    const volumeInput = document.getElementById("volumeInput");
+    const currentTempInput = document.getElementById("currentTempInput");
+    const desiredTempInput = document.getElementById("desiredTempInput");
+    const hoursInput = document.getElementById("hoursInput");
+    const resultDiv = document.getElementById("result");
+
+    // Labels
+    const volumeLabel = document.getElementById("volumeLabel");
+    const currentTempLabel = document.getElementById("currentTempLabel");
+    const desiredTempLabel = document.getElementById("desiredTempLabel");
+
+    // Helper: Fahrenheit <-> Celsius
+    function fahrenheitToCelsius(f) {
+      return (f - 32) * 5 / 9;
+    }
+    function celsiusToFahrenheit(c) {
+      return (c * 9 / 5) + 32;
+    }
+
+    // Helper: Gallons <-> Liters
+    function gallonsToLiters(gal) {
+      return gal * 3.785411784;
+    }
+    function litersToGallons(liters) {
+      return liters * 0.264172052;
+    }
+
+    // Sets the form fields and labels to American or Metric defaults
+    function setToAmerican() {
+      volumeLabel.textContent = "Pool Volume (gallons):";
+      currentTempLabel.textContent = "Current Temperature (°F):";
+      desiredTempLabel.textContent = "Desired Temperature (°F):";
+
+      volumeInput.value = defaultAmerican.volume;
+      currentTempInput.value = defaultAmerican.currentTemp;
+      desiredTempInput.value = defaultAmerican.desiredTemp;
+      hoursInput.value = defaultAmerican.hours;
+    }
+
+    function setToMetric() {
+      volumeLabel.textContent = "Pool Volume (liters):";
+      currentTempLabel.textContent = "Current Temperature (°C):";
+      desiredTempLabel.textContent = "Desired Temperature (°C):";
+
+      volumeInput.value = defaultMetric.volume;
+      currentTempInput.value = defaultMetric.currentTemp;
+      desiredTempInput.value = defaultMetric.desiredTemp;
+      hoursInput.value = defaultMetric.hours;
+    }
+
+    // Convert existing American values in the text fields to Metric
+    function convertAmericanToMetric() {
+      // Read current field values
+      let volGal = parseFloat(volumeInput.value);
+      let currF = parseFloat(currentTempInput.value);
+      let desF = parseFloat(desiredTempInput.value);
+
+      // If any are invalid, skip or treat as default
+      if (isNaN(volGal)) volGal = defaultAmerican.volume;
+      if (isNaN(currF))  currF  = defaultAmerican.currentTemp;
+      if (isNaN(desF))   desF   = defaultAmerican.desiredTemp;
+
+      // Convert
+      const volLiters = gallonsToLiters(volGal);
+      const currC = fahrenheitToCelsius(currF);
+      const desC  = fahrenheitToCelsius(desF);
+
+      // Write back
+      volumeInput.value = volLiters.toFixed(0);
+      currentTempInput.value = currC.toFixed(0);
+      desiredTempInput.value = desC.toFixed(0);
+    }
+
+    // Convert existing Metric values in the text fields to American
+    function convertMetricToAmerican() {
+      // Read current field values
+      let volLiters = parseFloat(volumeInput.value);
+      let currC = parseFloat(currentTempInput.value);
+      let desC  = parseFloat(desiredTempInput.value);
+
+      // If any are invalid, skip or treat as default
+      if (isNaN(volLiters)) volLiters = defaultMetric.volume;
+      if (isNaN(currC))     currC     = defaultMetric.currentTemp;
+      if (isNaN(desC))      desC      = defaultMetric.desiredTemp;
+
+      // Convert
+      const volGal = litersToGallons(volLiters);
+      const currF = celsiusToFahrenheit(currC);
+      const desF  = celsiusToFahrenheit(desC);
+
+      // Write back
+      volumeInput.value = volGal.toFixed(0);
+      currentTempInput.value = currF.toFixed(0);
+      desiredTempInput.value = desF.toFixed(0);
+    }
+
+    // --------------------------------------
+    // PAGE INIT
+    // --------------------------------------
+    // By default, keep the toggle off (American)
+    // and set American defaults
+    window.onload = () => {
+      unitToggle.checked = false; // American by default
+      setToAmerican();
+    };
+
+    // --------------------------------------
+    // TOGGLE CHANGE
+    // --------------------------------------
+    unitToggle.addEventListener("change", () => {
+      if (unitToggle.checked) {
+        // Switch to Metric
+        convertAmericanToMetric();
+        volumeLabel.textContent = "Pool Volume (liters):";
+        currentTempLabel.textContent = "Current Temperature (°C):";
+        desiredTempLabel.textContent = "Desired Temperature (°C):";
+      } else {
+        // Switch to American
+        convertMetricToAmerican();
+        volumeLabel.textContent = "Pool Volume (gallons):";
+        currentTempLabel.textContent = "Current Temperature (°F):";
+        desiredTempLabel.textContent = "Desired Temperature (°F):";
+      }
+      // Hide old result
+      resultDiv.style.display = "none";
+      resultDiv.innerHTML = "";
+    });
+
+    // --------------------------------------
+    // CALCULATION
+    // --------------------------------------
+    document.getElementById("calculateBtn").addEventListener("click", function() {
+      const isMetric = unitToggle.checked; // if checked, metric; else american
+      const volumeVal = parseFloat(volumeInput.value);
+      const currentTempVal = parseFloat(currentTempInput.value);
+      const desiredTempVal = parseFloat(desiredTempInput.value);
+      const hoursVal = parseFloat(hoursInput.value);
+
+      if (
+        isNaN(volumeVal) || 
+        isNaN(currentTempVal) || 
+        isNaN(desiredTempVal) ||
+        isNaN(hoursVal)
+      ) {
+        alert("Please fill in all fields with valid numbers.");
+        return;
+      }
+      if (desiredTempVal <= currentTempVal) {
+        alert("Desired temperature must be higher than the current temperature.");
+        return;
+      }
+      if (hoursVal <= 0) {
+        alert("Heating time must be greater than 0.");
+        return;
+      }
+
+      let resultText = "";
+      if (!isMetric) {
+        // AMERICAN Calculation
+        const deltaTemp = desiredTempVal - currentTempVal;
+        // total BTU = gallons * 8.34 lb/gal * deltaTemp(°F)
+        const totalBTU = volumeVal * 8.34 * deltaTemp;
+        const btuPerHour = totalBTU / hoursVal;
+        // Convert BTU/h to kW (1 kW = ~3412 BTU/h)
+        const kW = btuPerHour / 3412;
+        resultText = `
+          <strong>Required Heater Size (American):</strong><br />
+          ${btuPerHour.toFixed(0)} BTU/h<br />
+          ${kW.toFixed(2)} kW
+        `;
+      } else {
+        // METRIC Calculation
+        const deltaTemp = desiredTempVal - currentTempVal;
+        // Energy (kWh) = (liters * 4.186 kJ/kg°C * deltaTemp) / 3600
+        // 1 liter of water ~ 1 kg
+        const energyKWh = (volumeVal * 4.186 * deltaTemp) / 3600;
+        // Power (kW) = energy(kWh) / time(h)
+        const kW = energyKWh / hoursVal;
+        resultText = `
+          <strong>Required Heater Size (Metric):</strong><br />
+          ${kW.toFixed(2)} kW
+        `;
+      }
+
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = resultText;
+    });
+  </script>
+</body>
+</html>
