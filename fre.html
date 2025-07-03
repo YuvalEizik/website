@@ -51,7 +51,8 @@
             border-radius: 8px;
             height: auto;
         }
-        .product button {
+        .product a {
+            display: inline-block;
             background-color: #efc0a0; /* Changed from green */
             color: #fff;
             border: none;
@@ -60,8 +61,10 @@
             cursor: pointer;
             font-size: 16px;
             margin-top: 10px;
+            text-decoration: none;
+            transition: background-color 0.2s;
         }
-        .product button:hover {
+        .product a:hover {
             background-color: #dbb393; /* Slightly darker for hover */
         }
         footer {
@@ -95,12 +98,12 @@
             <div class="product">
                 <img src="https://yuvaleizik.github.io/website/images/אישה בלי רקע.png" alt="FrEssence Original">
                 <p><strong>FrEssence Women ✨</strong></p>
-                <button onclick="alert('FrEssence Original נוסף לסל הקניות!')">הזמינו עכשיו</button>
+                <a href="https://www.fressence.pro/store/3" target="_blank">הזמינו עכשיו</a>
             </div>
             <div class="product">
                 <img src="https://yuvaleizik.github.io/website/images/מוצר גבר.jpg" alt="FrEssence Plus">
                 <p><strong>FrEssence Men ✨</strong></p>
-                <button onclick="alert('FrEssence Plus נוסף לסל הקניות!')">הזמינו עכשיו</button>
+                <a href="https://www.fressence.pro/store/4" target="_blank">הזמינו עכשיו</a>
             </div>
         </div>
     </div>
